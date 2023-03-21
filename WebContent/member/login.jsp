@@ -20,6 +20,17 @@
 	<title>Insert title here</title>
 </head>
 <body>
+	<c:if test="not empty joinResult">
+		<script>
+			alert('${joinResult}')
+		</script>
+	</c:if>
+	<c:if test="not empty joinError">
+		<script>
+			alert('${joinError}')
+			history.back();
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
 		<form action="login.do" method="post">

@@ -11,17 +11,8 @@
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
 	<style>
 		#content form{height: 1400px;}
-		[쇼]
 	</style>
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script>
-		function checkSize(input) {
-	    if (input.files && input.files[0].size > (3 * 1024 * 1024)) {
-	        alert("용량이 3mb를 넘습니다.");
-	        input.value = null;
-	    }
-		} // mphoto 업로드 용량 제한
-	</script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>
 		$(function(){
 			$('#mid').keyup(function(){
@@ -51,6 +42,25 @@
 	  			}  // if
 	  		}); // mpw, mpwChk keyup
 		});
+		$('form').submit(function(){
+  			var midConfirmResult = $('#midConfirmResult').text().trim();
+  			var mpwChkResult = $('#mpwChkResult').text().trim();
+  			if(midConfirmResult != '사용가능한 ID입니다'){
+  				alert('중복된 ID입니다');
+  				$('#mid').focus();
+  				return false;		// submit 제한
+  			}else if(mpwChkResult != '비밀번호 일치'){
+  				alert('비밀번호를 확인하세요');
+  				$('#mpw').focus();
+  				return false;		// submit 제한
+  			} // if
+  		}); // form submit event
+		function checkSize(input) {
+		    if (input.files && input.files[0].size > (3 * 1024 * 1024)) {
+		        alert("용량이 3mb를 넘습니다.");
+		        input.value = null;
+		    }
+			} // mphoto 업로드 용량 제한
 	</script>
 </head>
 <body>
@@ -109,20 +119,14 @@
 					<tr>
 						<th>성별</th>
 						<td>
-							<input type="radio" name="mgender" value="m" class="mgender">남
-							<input type="radio" name="mgender" value="f" class="mgender">여
+							<input type="radio" name="mgender" value="m">남
+							<input type="radio" name="mgender" value="f">여
 						</td>
 					</tr>
 					<tr>
 						<th><label for="mbirth">생년월일</label></th>
 						<td>
 							<input type="text" name="mbirth" id="datepicker" class="mbirth">
-						</td>
-					</tr>
-					<tr>
-						<th><label for="maddress">주소</label></th>
-						<td>
-							<input type="text" name="maddress" id="maddress" class="maddress">
 						</td>
 					</tr>
 					<tr>

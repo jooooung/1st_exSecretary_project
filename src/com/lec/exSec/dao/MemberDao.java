@@ -89,7 +89,7 @@ public class MemberDao {
 			pstmt.setDate(9, member.getmrdate());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage() + "회원가입 실패");
 		}finally {
 			try {
 				if(pstmt != null) pstmt.close();

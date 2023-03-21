@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lec.exSec.service.JoinService;
 import com.lec.exSec.service.LoginService;
 import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.Service;
@@ -43,6 +44,10 @@ public class FrontController extends HttpServlet {
 			service = new MidConfirmService();
 			service.execute(request, response);
 			viewPage = "member/midConfirm.jsp";
+		}else if(command.equals("/join.do")) {  // 회원가입 저장
+			service = new JoinService();
+			service.execute(request, response);
+			viewPage = "loginView.do";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

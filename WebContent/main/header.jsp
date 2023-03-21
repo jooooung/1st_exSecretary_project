@@ -46,7 +46,6 @@
 	<c:if test="${not empty member and empty admin}"> <%-- 회원 로그인 화면 --%>
 		<div class="gnb">
 			<ul>
-				<li><a href="${conPath }/joinView.do">마이페이지</a></li>
 				<li><a href="${conPath }/logoutView.do">로그아웃</a></li>
 				<li><a>${member.mname }님</a></li>
 			</ul>
