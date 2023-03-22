@@ -35,18 +35,18 @@
 		</div>
 		<div class="lnb">
 			<ul>
-				<li><a href="#">자유게시판</a></li>
-				<li><a href="#">나의 변화</a></li>
-				<li><a href="#">운동기록</a></li>
-				<li><a href="#">운동하기</a></li>
+				<li><a href="loginView.do">자유게시판</a></li>
+				<li><a href="loginView.do">나의 변화</a></li>
+				<li><a href="loginView.do">운동기록</a></li>
+				<li><a href="loginView.do">운동하기</a></li>
 			</ul>
 		</div>
 	</c:if>
 	<c:if test="${not empty member and empty admin}"> <%-- 회원 로그인 화면 --%>
 		<div class="gnb">
 			<ul>
-				<li><a href="${conPath }/logoutView.do">로그아웃</a></li>
-				<li><a>${member.mname }님</a></li>
+				<li><a href="${conPath }/logout.do">로그아웃</a></li>
+				<li><a>${member.mname }님 오늘도 즐거운 운동 되세요.</a></li>
 			</ul>
 		</div>
 		<div class="logo">
@@ -67,7 +67,8 @@
 	<c:if test="${empty member and not empty admin}"> <%-- 관리자 로그인 화면 --%>
 		<div class="gnb">
 			<ul>
-				<li><a href="${conPath }/loginView.do">로그아웃</a></li>
+				<li><a href="${conPath }/logout.do">로그아웃</a></li>
+				<li><a>환영합니다 ${admin.aname }님</a></li>
 			</ul>
 		</div>
 		<div class="logo">

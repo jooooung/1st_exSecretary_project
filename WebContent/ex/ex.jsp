@@ -8,27 +8,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath }/css/main.css" rel="stylesheet">
+	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
 			
 		});
 	</script>
-<head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${not empty loginErrorMsg }">
+	<c:if test="${empty member}">
 		<script>
-			alert('${loginErrorMsg}');
-			history.back();
+			location.href='${conPath}/loginView.do?next=exView.do';
 		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
-		
+		<form action="ex.do">
+			
+		</form>
 	</div>
 	<jsp:include page="../main/footer.jsp"/>
 </body>

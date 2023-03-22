@@ -15,62 +15,34 @@
 			
 		});
 	</script>
-<head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${not empty joinResult}">
-			<script>
-				alert('${joinResult}')
-				location.href="loginView.do"
-			</script>
-		</c:when>
-		<c:when test="${not empty joinError}">
-			<script>
-				alert('${joinError}')
-				history.back();
-			</script>
-		</c:when>
-		<c:when test="${not empty next }">
-			<script>
-				location.href = '${conPath}/${next}';
-			</script>
-		</c:when>
-	</c:choose>
+	<c:if test="${not empty next }">
+		<script>
+			location.href = '${conPath}/${next}';
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
-		<form action="login.do" method="post">
+		<form action="aLogin.do" method="post">
 			<input type="hidden" name="next" value="${param.next }">
 			<table>
-				<caption>로그인</caption>
+				<caption>관리자 로그인</caption>
 				<tr>
 					<td>
-						<input type="text" name="mid" id="mid" class="mid" value="${mid }"
+						<input type="text" name="aid" id="aid" class="aid" value="${aid }"
 										placeholder="아이디를 입력해주세요" required="required">
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="password" name="mpw" id="mpw" class="mpw"
+						<input type="password" name="apw" id="apw" class="apw"
 										placeholder="비밀번호를 입력해주세요" required="required">
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<input type="submit" value="로그인" class="btn">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						아직 운동비서가 없으신가요?
-						<a href="joinView.do"><b>회원가입</b></a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="aLoginView.do"><b>관리자모드</b></a>
 					</td>
 				</tr>
 			</table>

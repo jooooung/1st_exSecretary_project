@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lec.exSec.service.ALoginService;
 import com.lec.exSec.service.JoinService;
 import com.lec.exSec.service.LoginService;
+import com.lec.exSec.service.MLogoutService;
 import com.lec.exSec.service.MemberModifyService;
 import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.Service;
+import com.lec.exSec.service.preExService;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -32,6 +35,7 @@ public class FrontController extends HttpServlet {
 		String command = uri.substring(conPath.length());
 		String viewPage = null;
 		Service service = null;
+		/* * * * * * * * * * * * member * * * * * * * * * * * */
 		if(command.equals("/main.do")) {	// 메인페이지
 			viewPage = "main/main.jsp";
 		}else if(command.equals("/loginView.do")) {	// member 로그인 페이지
@@ -59,7 +63,24 @@ public class FrontController extends HttpServlet {
 		}else if(command.equals("/modify.do")){		// 정보 수정 처리
 			service = new MemberModifyService();
 			service.execute(request, response);
+			viewPage = "memberView.do"; 
+		}else if(command.equals("/logout.do")) {	// 로그아웃
+			service = new MLogoutService();
+			service.execute(request, response);
+			viewPage = "main.do";
+		}else if(command.equals("/exView.do")) {
+			service = new preExService();
+			service.execute(request, response);
+			viewPage = "ex/ex.jsp";
 		}
+		
+		
+		/*
+		 * else if(command.equals("/aLoginView.do")) { // admin 로그인 페이지 viewPage =
+		 * "admin/adminLogin.jsp"; }else if(command.equals("/aLogin.do")) { // admin 로그인
+		 * 처리 service = new ALoginService(); service.execute(request, response);
+		 * viewPage = "main.do"; }
+		 */
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}

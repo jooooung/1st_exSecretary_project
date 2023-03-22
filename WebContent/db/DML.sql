@@ -147,6 +147,7 @@ DELETE FROM EX WHERE ENO = '2' AND MID = 'member3';
 DELETE FROM EX WHERE MID = 'member1';
 
 --------------- EXPART ---------------
+SELECT * FROM EXPART WHERE EPNO = 1;
 -- 1. 새 운동 등록
 INSERT INTO EXPART VALUES (EXPART_SEQ.NEXTVAL, '상체', '파이크 푸시업');
 -- 2. 운동 수정

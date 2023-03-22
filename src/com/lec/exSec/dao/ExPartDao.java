@@ -34,6 +34,36 @@ public class ExPartDao {
 		}
 		return conn;
 	}
+	public ExPartDto selectEx(int epno) {
+		ExPartDto dto = new ExPartDto();
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT * FROM EXPART WHERE EPNO = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, epno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String eppart = rs.getString("eppart");
+				String ename = rs.getString("ename");
+				dto = new ExPartDto(epno, eppart, ename);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} 
+		}
+		return dto;
+	}
+	
 	// 1. 새 운동 등록
 	public int writeExPart(ExPartDto dto) {
 		int result = FAIL;

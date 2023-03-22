@@ -10,7 +10,7 @@
 	<title>Insert title here</title>
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
 	<style>
-		#content form{height: 1000px;}
+		#content form{height: 1100px;}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
@@ -44,11 +44,23 @@
 	</script>
 </head>
 <body>
-	<c:if test="${empty member}">
-		<script>
-			location.href='${conPath}/loginView.do';
-		</script>
-	</c:if>
+	<c:choose>
+		<c:when test="${empty member}">
+			<script>
+				location.href='${conPath}/loginView.do?next=memberView.do';
+			</script>
+		</c:when>
+		<c:when test="${not empty modifyErrorMsg}">
+			<script>
+				alert('${modifyErrorMsg}');
+			</script>
+		</c:when>
+		<c:when test="${not empty modifyResult}">
+			<script>
+				alert('${modifyResult}');
+			</script>
+		</c:when>
+	</c:choose>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
 		<form action="modify.do" method="post" enctype="multipart/form-data">
@@ -64,7 +76,7 @@
 					</td>
 					<c:if test="${not empty member.mphoto }">
 						<td rowspan="2">
-	  					<img alt="${member.mname }사진" src="${conPath }/mPhotoUp/${member.mphoto}">
+	  					<img alt="${member.mname }사진" src="${conPath }/memberPhotoUp/${member.mphoto}" width="130px">
 	  				</td>
 					</c:if>
 				</tr>
@@ -124,6 +136,12 @@
 						<th><label for="mbirth">생년월일</label></th>
 						<td colspan="2">
 							<input type="text" name="mbirth" id="datepicker" class="mbirth" value="${member.mbirth }">
+						</td>
+					</tr>
+					<tr>
+						<th><label for="mrdate">가입일</label></th>
+						<td colspan="2">
+							<input type="text" name="mrdate" id="mrdate" class="mrdate" value="${member.mrdate}" readonly="readonly">
 						</td>
 					</tr>
 					<tr>

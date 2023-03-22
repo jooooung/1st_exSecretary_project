@@ -21,6 +21,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class MemberModifyService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("next", request.getParameter("next"));
 		String path = request.getRealPath("memberPhotoUp");
 		int maxSize = 1024 * 1024 * 3; // 업로드 용량 3mb 제한
 		String mphoto = "";
@@ -53,15 +54,14 @@ public class MemberModifyService implements Service {
 			if(!mbirthStr.equals("")) {
 				mbirth = Date.valueOf(mbirthStr);
 			}
-			String mrdateStr = mRequest.getParameter("mrdate");
-			System.out.println(mrdateStr);
+			String mrdateStr = mRequest.getParameter("mrdate"); 
 			Date mrdate = null;
-			if(!mrdateStr.equals("")) {
-				mrdate = Date.valueOf(mrdateStr);
+			if(!mrdateStr.equals("")) { 
+				mrdate = Date.valueOf(mrdateStr); 
 			}
 			MemberDao mDao = MemberDao.getInstance();
 			MemberDto member = new MemberDto(mid, mpw, mname, mphoto, mtel, memail, mgender, mbirth, mrdate);	
-			result = mDao.joinMember(member);
+			result = mDao.modifyMember(member);
 			if(result == MemberDao.SUCCESS) {
 				HttpSession session = request.getSession(); 
 				session.setAttribute("member", member);

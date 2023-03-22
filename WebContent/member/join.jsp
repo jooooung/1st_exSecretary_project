@@ -75,7 +75,7 @@
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="mid" id="mid" class="mid" value="${mid }"
+						<input type="text" name="mid" id="mid" class="mid""
 										placeholder="아이디를 입력해주세요" required="required">
 						<div id="midConfirmResult"> &nbsp; &nbsp; &nbsp; </div>
 					</td>
