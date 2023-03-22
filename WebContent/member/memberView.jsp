@@ -12,48 +12,27 @@
 	<style>
 		#content form{height: 1000px;}
 	</style>
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
-			$('#mid').keyup(function(){
-	  			var mid = $(this).val();
-	  			if(mid.length < 3){
-	  				$('#midConfirmResult').text('id를 3글자 이상 입력하세요')
-	  			}else{
-	  				$.ajax({
-	  					url : "${conPath}/midConfirm.do",
-	  					type : 'get',
-	  					data : 'mid='+mid,
-	  					dataType : 'html',
-	  					success : function(data){
-	  						$('#midConfirmResult').html(data);
-	  					},
-	  				}); // $.ajax
-	  			} // if
-	  		}); // #mid keyup event
-	  		
-	  		$('#mpw, #mpwChk').keyup(function(){
+			$('#mpw, #mpwChk').keyup(function(){
 	  			var mpw = $('#mpw').val();
 	  			var mpwChk = $('#mpwChk').val();
 	  			if(mpw != '' && mpwChk != '' && mpw == mpwChk){
 	  				$('#mpwChkResult').text('비밀번호 일치');
-	  			}else{
+	  			}else if(mpw == '' && mpwChk ==''){
+	  				$('#mpwChkResult').html('');
+	  			}else {
 	  				$('#mpwChkResult').html('<b>비밀번호 불일치</b>');
 	  			}  // if
 	  		}); // mpw, mpwChk keyup
-		
 		$('form').submit(function(){
-  			var midConfirmResult = $('#midConfirmResult').text().trim();
   			var mpwChkResult = $('#mpwChkResult').text().trim();
-  			if(midConfirmResult != '사용가능한 ID입니다'){
-  				alert('ID를 확인하세요');
-  				$('#mid').focus();
-  				return false;		// submit 제한
-  			}else if(mpwChkResult != '비밀번호 일치'){
+  			if(mpwChkResult != '비밀번호 일치' && mpwChkResult != ''){
   				alert('비밀번호를 확인하세요');
   				$('#mpw').focus();
   				return false;		// submit 제한
-  			} // if
+  			} // if(비밀번호 변경 시)
   		}); // form submit event
 		});
 		function checkSize(input) {
@@ -63,79 +42,94 @@
 		    }
 			} // mphoto 업로드 용량 제한
 	</script>
-	
 </head>
 <body>
+	<c:if test="${empty member}">
+		<script>
+			location.href='${conPath}/loginView.do';
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
-		<form action="join.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="next" value="${param.next }">
+		<form action="modify.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="dbMpw" value="${member.mpw }">	<!-- 비밀번호 미 변경시 현 비밀번호로 -->
+			<input type="hidden" name="dbMphoto" value="${member.mphoto }">	<!-- 프로필 미 변경시 현 프로필로 -->
 			<table>
-				<caption>회원가입</caption>
+				<caption>마이페이지</caption>
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="mid" id="mid" class="mid" value="${mid }"
-										placeholder="아이디를 입력해주세요" required="required">
-						<div id="midConfirmResult"> &nbsp; &nbsp; &nbsp; </div>
+						<input type="text" name="mid" id="mid" class="mid" value="${member.mid }"
+										readonly="readonly">
 					</td>
+					<c:if test="${not empty member.mphoto }">
+						<td rowspan="2">
+	  					<img alt="${member.mname }사진" src="${conPath }/mPhotoUp/${member.mphoto}">
+	  				</td>
+					</c:if>
 				</tr>
 				<tr>
-						<th><label for="mpw">비밀번호</label></th>
+						<th><label for="oldMpw">비밀번호</label></th>
 						<td>
-							<input type="password" name="mpw" id="mpw" class="mpw" required="required">
+							<input type="password" name="oldMpw" required="required">
 						</td>
 					</tr>
 					<tr>
-						<th><label for="mpwChk">확인비밀번호</label></th>
-						<td>
-							<input type="password" name="mpwChk" id="mpwChk" class="mpwChk" required="required">
+						<th><label for="mpw">새 비밀번호</label></th>
+						<td colspan="2">
+							<input type="password" name="mpw" id="mpw" class="mpw" size="30">
+							<div id="mpwChkResult"> &nbsp; &nbsp; &nbsp; </div>
+						</td>
+					</tr>
+					<tr>
+						<th><label for="mpwChk">새 비밀번호 확인</label></th>
+						<td colspan="2">
+							<input type="password" name="mpwChk" id="mpwChk" class="mpwChk">
 							<div id="mpwChkResult"> &nbsp; &nbsp; &nbsp; </div>
 						</td>
 					</tr>
 					<tr>
 						<th><label for="mname">이름</label></th>
-						<td>
-							<input type="text" name="mname" id="mname" class="mname" required="required">
+						<td colspan="2">
+							<input type="text" name="mname" id="mname" class="mname" required="required" value="${member.mname }">
 						</td>
 					</tr>
 					<tr>
 						<th><label for="mphoto">사진</label></th>
-						<td>
+						<td colspan="2">
 							<input type="file" name="mphoto" id="mphoto" class="mphoto" onchange="checkSize(this)">
 						</td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td>
-							<input type="text" name="mtel" id="mtel" class="mtel">
+						<td colspan="2">
+							<input type="text" name="mtel" id="mtel" class="mtel" value="${member.mtel }">
 						</td>
 					</tr>
 					<tr>
 						<th><label for="memail">메일</label></th>
-						<td>
-							<input type="email" name="memail" id="memail" class="memail">
+						<td colspan="2">
+							<input type="email" name="memail" id="memail" class="memail" value="${member.memail }">
 							<div id="memailConfirmResult"> &nbsp; &nbsp; &nbsp; </div>
 						</td>
 					</tr>
 					<tr>
 						<th>성별</th>
-						<td>
+						<td colspan="2">
 							<input type="radio" name="mgender" class="mgender" value="m"><b>남자</b>
 							<input type="radio" name="mgender" class="mgender" value="f"><b>여자</b>
 						</td>
 					</tr>
 					<tr>
 						<th><label for="mbirth">생년월일</label></th>
-						<td>
-							<input type="text" name="mbirth" id="datepicker" class="mbirth">
+						<td colspan="2">
+							<input type="text" name="mbirth" id="datepicker" class="mbirth" value="${member.mbirth }">
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">
-							<input type="submit" value="회원가입" class="btn">
-							<input type="button" value="로그인" class="btn"
-										 onclick="location.href='${conPath}/loginView.do'">
+						<td colspan="3">
+							<input type="submit" value="정보수정" class="btn">
+							<input type="button" value="회원탈퇴" class="btn" onclick="location.href='${conPath}/withdrawal.do'">
 						</td>
 					</tr>
 			</table>

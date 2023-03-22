@@ -11,6 +11,7 @@ public class LoginService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("next", request.getParameter("next"));
+		request.setAttribute("mrdate", request.getParameter("mrdate"));
 		String mid = request.getParameter("mid");
 		String mpw = request.getParameter("mpw");
 		MemberDao mDao = MemberDao.getInstance();

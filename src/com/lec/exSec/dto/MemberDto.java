@@ -28,6 +28,17 @@ public class MemberDto {
 		this.mbirth = mbirth;
 		this.mrdate = mrdate;
 	}
+	public MemberDto(String mid2, String mpw2, String mname2, String mphoto2, String mtel2, String memail2,
+			String mgender2, Date mbirth2) {
+		this.mid = mid;
+		this.mpw = mpw;
+		this.mname = mname;
+		this.mphoto = mphoto;
+		this.mtel = mtel;
+		this.memail = memail;
+		this.mgender = mgender;
+		this.mbirth = mbirth;
+	}
 	public String getMid() {
 		return mid;
 	}

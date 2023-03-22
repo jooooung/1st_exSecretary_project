@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lec.exSec.service.JoinService;
 import com.lec.exSec.service.LoginService;
+import com.lec.exSec.service.MemberModifyService;
 import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.Service;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private int join = 0;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		actionDo(request, response);
 	}
@@ -40,14 +42,23 @@ public class FrontController extends HttpServlet {
 			viewPage = "main.do";
 		}else if(command.equals("/joinView.do")) {	// 회원가입 페이지
 			viewPage = "member/join.jsp";
+			join = 1;
 		}else if(command.equals("/midConfirm.do")) {  // 아이디 중복체크
 			service = new MidConfirmService();
 			service.execute(request, response);
 			viewPage = "member/midConfirm.jsp";
 		}else if(command.equals("/join.do")) {  // 회원가입 저장
-			service = new JoinService();
-			service.execute(request, response);
+			if(join == 1) {
+				service = new JoinService();
+				service.execute(request, response);
+				join = 0;
+			}
 			viewPage = "loginView.do";
+		}else if(command.equals("/memberView.do")){		// 마이페이지(정보수정)
+			viewPage = "member/memberView.jsp";
+		}else if(command.equals("/modify.do")){		// 정보 수정 처리
+			service = new MemberModifyService();
+			service.execute(request, response);
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

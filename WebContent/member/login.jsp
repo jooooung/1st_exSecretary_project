@@ -20,12 +20,12 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<c:if test="not empty joinResult">
+	<c:if test="${not empty joinResult}">
 		<script>
 			alert('${joinResult}')
 		</script>
 	</c:if>
-	<c:if test="not empty joinError">
+	<c:if test="${not empty joinError}">
 		<script>
 			alert('${joinError}')
 			history.back();
@@ -35,8 +35,9 @@
 	<div id="content">
 		<form action="login.do" method="post">
 			<input type="hidden" name="next" value="${param.next }">
+			<input type="hidden" name="mrdate" value="${member.mrdate}">
 			<table>
-				<caption>로그인</caption>
+				<caption>로그인${member.mrdate }</caption>
 				<tr>
 					<td>
 						<input type="text" name="mid" id="mid" class="mid" value="${mid }"

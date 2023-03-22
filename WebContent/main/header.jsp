@@ -35,7 +35,6 @@
 		</div>
 		<div class="lnb">
 			<ul>
-				<li><a href="#">마이페이지</a></li>
 				<li><a href="#">자유게시판</a></li>
 				<li><a href="#">나의 변화</a></li>
 				<li><a href="#">운동기록</a></li>
@@ -57,7 +56,7 @@
 		</div>
 		<div class="lnb">
 			<ul>
-				<li><a href="#">마이페이지</a></li>
+				<li><a href="memberView.do">마이페이지</a></li>
 				<li><a href="#">자유게시판</a></li>
 				<li><a href="#">나의 변화</a></li>
 				<li><a href="#">운동기록</a></li>
