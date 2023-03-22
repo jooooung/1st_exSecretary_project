@@ -128,8 +128,14 @@
 					<tr>
 						<th>성별</th>
 						<td colspan="2">
-							<input type="radio" name="mgender" class="mgender" value="m"><b>남자</b>
+						<c:if test="${member.mgender eq 'm'}">
+							<input type="radio" name="mgender" class="mgender" value="m" checked="checked"><b>남자</b>
 							<input type="radio" name="mgender" class="mgender" value="f"><b>여자</b>
+						</c:if>
+						<c:if test="${member.mgender eq 'f'}">
+							<input type="radio" name="mgender" class="mgender" value="m"><b>남자</b>
+							<input type="radio" name="mgender" class="mgender" value="f" checked="checked"><b>여자</b>
+						</c:if>
 						</td>
 					</tr>
 					<tr>

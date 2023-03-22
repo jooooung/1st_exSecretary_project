@@ -16,7 +16,7 @@ import com.lec.exSec.service.MLogoutService;
 import com.lec.exSec.service.MemberModifyService;
 import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.Service;
-import com.lec.exSec.service.preExService;
+import com.lec.exSec.service.exService;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -68,19 +68,19 @@ public class FrontController extends HttpServlet {
 			service = new MLogoutService();
 			service.execute(request, response);
 			viewPage = "main.do";
-		}else if(command.equals("/exView.do")) {
-			service = new preExService();
+		}else if(command.equals("/aLoginView.do")) {	// admin 로그인 페이지
+			viewPage = "admin/adminLogin.jsp";
+		}else if(command.equals("/aLogin.do")) {	// admin 로그인 처리
+			service = new ALoginService();
 			service.execute(request, response);
+			viewPage = "main.do";
+		}else if(command.equals("/exView.do")) {	// 운동하기 페이지
+			service = new exService();
+			service.execute(request
+					, response);
 			viewPage = "ex/ex.jsp";
 		}
-		
-		
-		/*
-		 * else if(command.equals("/aLoginView.do")) { // admin 로그인 페이지 viewPage =
-		 * "admin/adminLogin.jsp"; }else if(command.equals("/aLogin.do")) { // admin 로그인
-		 * 처리 service = new ALoginService(); service.execute(request, response);
-		 * viewPage = "main.do"; }
-		 */
+			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}

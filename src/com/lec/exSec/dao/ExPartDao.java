@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -12,7 +11,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.lec.exSec.dto.ExBoardDto;
 import com.lec.exSec.dto.ExPartDto;
 
 public class ExPartDao {
@@ -34,21 +32,23 @@ public class ExPartDao {
 		}
 		return conn;
 	}
-	public ExPartDto selectEx(int epno) {
-		ExPartDto dto = new ExPartDto();
+	// 운동하기 시 데이터 뿌리기 용
+	public ArrayList<ExPartDto> forSelectEx(String eppart) {
+		ArrayList<ExPartDto> allEx = new ArrayList<ExPartDto>();
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
-		String sql = "SELECT * FROM EXPART WHERE EPNO = ?";
+		String sql = "SELECT * FROM EXPART EPPART = ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, epno);
+			pstmt.setString(1, eppart);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				String eppart = rs.getString("eppart");
+			while(rs.next()) {
+				int epno = rs.getInt("epno");
+				eppart = rs.getString("eppart");
 				String ename = rs.getString("ename");
-				dto = new ExPartDto(epno, eppart, ename);
+				allEx.add(new ExPartDto(epno, eppart, ename));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -61,7 +61,7 @@ public class ExPartDao {
 				System.out.println(e.getMessage());
 			} 
 		}
-		return dto;
+		return allEx;
 	}
 	
 	// 1. 새 운동 등록

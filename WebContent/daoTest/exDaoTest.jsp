@@ -1,3 +1,5 @@
+<%@page import="com.lec.exSec.dto.ExPartDto"%>
+<%@page import="com.lec.exSec.dao.ExPartDao"%>
 <%@page import="java.sql.Date"%>
 <%@page import="com.lec.exSec.dao.ExDao"%>
 <%@page import="com.lec.exSec.dto.ExDto"%>

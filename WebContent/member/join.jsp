@@ -63,7 +63,6 @@
 		    }
 			} // mphoto 업로드 용량 제한
 	</script>
-	
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
