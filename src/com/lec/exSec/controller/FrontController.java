@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.exSec.service.ALoginService;
+import com.lec.exSec.service.ExService;
 import com.lec.exSec.service.JoinService;
 import com.lec.exSec.service.LoginService;
 import com.lec.exSec.service.MLogoutService;
 import com.lec.exSec.service.MemberModifyService;
 import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.Service;
-import com.lec.exSec.service.exService;
+import com.lec.exSec.service.PreExService;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -75,10 +76,11 @@ public class FrontController extends HttpServlet {
 			service.execute(request, response);
 			viewPage = "main.do";
 		}else if(command.equals("/exView.do")) {	// 운동하기 페이지
-			service = new exService();
-			service.execute(request
-					, response);
+			service = new PreExService();
+			service.execute(request, response);
 			viewPage = "ex/ex.jsp";
+		}else if(command.equals("/ex.do")) {	// 운동하기에서 한 운동 저장
+			service = new ExService();
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

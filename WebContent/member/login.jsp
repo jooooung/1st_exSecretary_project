@@ -21,6 +21,11 @@
 </head>
 <body>
 	<c:choose>
+		<c:when test="${not empty member}">
+			<script>
+				location.href="main.do"
+			</script>
+		</c:when>
 		<c:when test="${not empty joinResult}">
 			<script>
 				alert('${joinResult}')
@@ -48,7 +53,7 @@
 				<tr>
 					<td>
 						<input type="text" name="mid" id="mid" class="mid" value="${mid }"
-										placeholder="아이디를 입력해주세요" required="required">
+										placeholder="아이디를 입력해주세요" required="required" autofocus="autofocus">
 					</td>
 				</tr>
 				<tr>

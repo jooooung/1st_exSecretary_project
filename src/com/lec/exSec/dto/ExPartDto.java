@@ -33,6 +33,6 @@ public class ExPartDto {
 	}
 	@Override
 	public String toString() {
-		return "ExPartDto [epno=" + epno + ", eppart=" + eppart + ", ename=" + ename + "]";
+		return epno + ". 부위=" + eppart + ", 운동명=" + ename;
 	}
 }

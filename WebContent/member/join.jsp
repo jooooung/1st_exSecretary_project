@@ -11,6 +11,10 @@
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
 	<style>
 		#content form{height: 1000px;}
+		#content input[type=radio]{
+			width: 15px;
+			margin: 5px;
+		}
 	</style>
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>

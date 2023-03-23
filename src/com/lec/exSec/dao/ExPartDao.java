@@ -32,21 +32,20 @@ public class ExPartDao {
 		}
 		return conn;
 	}
-	// 운동하기 시 데이터 뿌리기 용
-	public ArrayList<ExPartDto> forSelectEx(String eppart) {
+	// 운동하기 시 상체 운동 목록
+	public ArrayList<ExPartDto> forSelectEx(ExPartDto epDto) {
 		ArrayList<ExPartDto> allEx = new ArrayList<ExPartDto>();
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
-		String sql = "SELECT * FROM EXPART EPPART = ?";
+		String sql = "SELECT * FROM EXPART";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, eppart);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int epno = rs.getInt("epno");
-				eppart = rs.getString("eppart");
+				String eppart = rs.getString("eppart");
 				String ename = rs.getString("ename");
 				allEx.add(new ExPartDto(epno, eppart, ename));
 			}
