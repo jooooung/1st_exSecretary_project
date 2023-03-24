@@ -8,27 +8,38 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.lec.exSec.dao.ExDao;
-import com.lec.exSec.dao.ExPartDao;
-import com.lec.exSec.dao.MemberDao;
 import com.lec.exSec.dto.ExDto;
-import com.lec.exSec.dto.ExPartDto;
 import com.lec.exSec.dto.MemberDto;
 
 public class ExService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		int eno = Integer.parseInt(request.getParameter("eno"));
-		String mid = request.getParameter("mid");
-		int epno = Integer.parseInt(request.getParameter("epno"));
-		double eweight = Double.valueOf(request.getParameter("eweight"));
+		HttpSession session = request.getSession();
+		MemberDto member = (MemberDto) session.getAttribute("member");
+		String mid = member.getMid();
+		String[] epnoStr = request.getParameterValues("expart");
+		int[] epnoArr = new int[epnoStr.length];
+		int epno = 0;
+		for (int i = 0; i < epnoStr.length; i++) {
+			epnoArr[i] = Integer.parseInt(epnoStr[i]);
+			epno = epnoArr[i];
+		}
+		
+		String eweightStr = request.getParameter("eweight");
+		double eweight = Double.valueOf(eweightStr);
 		int eset = Integer.parseInt(request.getParameter("eset"));
 		int ecount = Integer.parseInt(request.getParameter("ecount"));
 		String etimeStr = request.getParameter("etime");
+		Timestamp etime = new Timestamp(System.currentTimeMillis());
 		Date edate = new Date(System.currentTimeMillis());
-		ExPartDto epDto = new ExPartDto();
-		String ename = epDto.getEname();
-		Timestamp etime = Timestamp.valueOf(etimeStr);
-		ExDto ex = new ExDto(eno, mid, epno, eweight, eset, ecount, etime, edate, ename);
-		request.setAttribute("ex", ex);
-	}	
+		String ename = request.getParameter("ename");
+		ExDao eDao = ExDao.getInstance();
+		ExDto ex = new ExDto(0, mid, epno, eweight, eset, ecount, etime, edate, ename);
+		int result = eDao.writeEx(ex);
+		if(result == ExDao.SUCCESS) {
+			request.setAttribute("exResult", "오늘의 운동 완료!");
+		}else {
+			request.setAttribute("exFailResult", "운동을 완료하지 못했습니다");
+		}
+	}
 }

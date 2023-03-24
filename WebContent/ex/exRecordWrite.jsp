@@ -1,5 +1,3 @@
-<%@page import="com.lec.exSec.dto.ExPartDto"%>
-<%@page import="com.lec.exSec.dao.ExPartDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -30,72 +28,25 @@
 			padding: 0;
 			border-radius: 25px;
 		}
-		#content form .time{
-			width: 150px;
-			margin: 0 10px;
-		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
-			$('.addEx').click(function(){
-				$('table#exList').append('<tr>'
-						+'<th>운동선택</th>'
-						+'<td>'
-						+'	<select name="expart">'
-						+'		<c:forEach var="dto" items="${expart }">'
-						+'			<option value="${dto.epno }">${dto }</option>'
-						+'		</c:forEach>'
-						+'	</select>'
-						+'</td>'
-						+'<th>무게</th>'
-						+'<td>'
-						+'	<input type="number" name="eweight" class="ex">'
-						+'</td>'
-						+'<th>세트 수</th>'
-						+'<td>'
-						+'	<input type="number" name="eset" class="ex" required="required">'
-						+'</td>'
-						+'<th>운동개수</th>'
-						+'<td>'
-						+'	<input type="number" name="ecount"  class="ex" required="required">'
-						+'</td>'
-						+'<td>'
-						+'	<input type="button" value="X" class="delete">'
-						+'</td>'
-						+'</tr>');
-			});
-			$(document).on('click', '.delete', function(){
-				$(this).parents('tr').remove(); 
-			});
+			
 		});
-	</script>
-	<script>
-		let endTime = document.getElementById('endTime');
-		let startTime = document.getElementById('startTime');
-		var etime = document.getElementById('etiem');
-		etime.value = endTime - startTime;
 	</script>
 </head>
 <body>
-	<c:if test="${empty member}">
-		<script>
-			location.href='${conPath}/loginView.do?next=exView.do';
-		</script>
-	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
-		<form action="ex.do">
-		<input type="hidden" name="ename" value="${dto.ename }">
+		<form action="exRecordWrite.do">
 			<table id="exList">
-				<caption><b>운동을 위한 시간을 내지 않으면,<br> 병 때문에 시간을 내야 하게 될지도 모른다. -로빈 샤머</b></caption>
+				<caption><b>운동을 하는것만큼 기록하는 것도 중요합니다</b></caption>
 				<tr>
 					<th>운동선택</th>
 					<td>
 						<select name="expart">
-							<c:forEach var="dto" items="${expart }">
-								<option value="${dto.epno }">${dto }</option>
-							</c:forEach>
+								<option>${expart}</option>
 						</select>	
 					</td>						
 					<th>무게</th>
@@ -113,15 +64,18 @@
 					<td>
 						<input type="button" value="X" class="delete"> 
 					</td>
+					<th>운동시간</th>
+					<td>
+						<input type="time" name="etime"  value="00" placeholder="">
+					</td>
 				</tr>
 			</table>
 			<table>
 				<tr>
-					<th>운동시간</th>
 					<td colspan="4">
-						시작시간<input type="time" name="startTime" class="time"> 
-						종료시간<input type="time" name="endTime" class="time"> 
-						<input type="hidden" name="etime">
+						<span id="hour">00</span> :
+						<span id="min">00</span> :
+						<span id="sec">00</span>
 					</td>
 					<td colspan="3">
 						<input type="button" onclick="startClock()" value="start" class="timer">
@@ -132,7 +86,7 @@
 				<tr>
 					<td colspan="7">
 						<input type="button" value="운동 추가" class="btn addEx">
-						<input type="submit" value="오늘의 운동 완료" class="btn">
+						<input type="submit" value="저장하기" class="btn">
 					</td>
 				</tr>
 				</table>

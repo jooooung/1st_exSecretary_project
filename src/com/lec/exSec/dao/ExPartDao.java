@@ -32,8 +32,8 @@ public class ExPartDao {
 		}
 		return conn;
 	}
-	// 운동하기 시 상체 운동 목록
-	public ArrayList<ExPartDto> forSelectEx(ExPartDto epDto) {
+	// 운동하기 시 운동 
+	public ArrayList<ExPartDto> forSelectEx(ExPartDto dto) {
 		ArrayList<ExPartDto> allEx = new ArrayList<ExPartDto>();
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;

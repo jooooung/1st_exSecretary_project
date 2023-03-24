@@ -12,8 +12,7 @@
 			width: 100%;
 			height: auto;
 			min-height: 100%;
-			padding-bottom: 80px;
-			padding: 100px 0;
+			padding: 100px 0 80px;
 			background-image: url("https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fCVFQyU5QSVCNCVFQiU4RiU5OXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60");
 			background-size:  100% 100%;
 			background-repeat: no-repeat;
@@ -53,8 +52,10 @@
 			border-bottom: 2px solid #cfcfda;
 			width: 90%;
 		}
-		.mgender{
-			margin: 0 20px 35px;
+		#content input.mgender{
+			width: 100px;
+			height: 20px;
+			
 		}
 				
 		.btn{
@@ -70,4 +71,4 @@
 			border: 0;
 			border-bottom: 2px solid #cfcfda;
 		}
-	
+		

@@ -13,7 +13,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.lec.exSec.dto.ExBoardDto;
 import com.lec.exSec.dto.ExDto;
 
 public class ExDao {

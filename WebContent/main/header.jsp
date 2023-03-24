@@ -59,7 +59,7 @@
 				<li><a href="memberView.do">마이페이지</a></li>
 				<li><a href="#">자유게시판</a></li>
 				<li><a href="#">나의 변화</a></li>
-				<li><a href="#">운동기록</a></li>
+				<li><a href="exRecordList.do">운동기록</a></li>
 				<li><a href="exView.do">운동하기</a></li>
 			</ul>
 		</div>

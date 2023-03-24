@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.exSec.service.ALoginService;
+import com.lec.exSec.service.ExRecordListService;
+import com.lec.exSec.service.ExRecordWriteService;
 import com.lec.exSec.service.ExService;
 import com.lec.exSec.service.JoinService;
 import com.lec.exSec.service.LoginService;
@@ -81,6 +83,18 @@ public class FrontController extends HttpServlet {
 			viewPage = "ex/ex.jsp";
 		}else if(command.equals("/ex.do")) {	// 운동하기에서 한 운동 저장
 			service = new ExService();
+			service.execute(request, response);
+			viewPage = "exRecordList.do";
+		}else if(command.equals("/exRecordList.do")) {	// 운동기록 목록
+			service = new ExRecordListService();
+			service.execute(request, response);
+			viewPage = "ex/exRecordList.jsp"; 
+		}else if(command.equals("/exRecordWriteView.do")) {		// 운동기록 등록페이지
+			viewPage = "ex/exRecordWrite.jsp";
+		}else if(command.equals("/exRecordWrite.do")) {	// 운동기록 등록 저장
+			service = new ExRecordWriteService();
+			service.execute(request, response);
+			viewPage = "exRecordList.do";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

@@ -28,7 +28,7 @@
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
-		
+ 		
 	</div>
 	<jsp:include page="../main/footer.jsp"/>
 </body>
