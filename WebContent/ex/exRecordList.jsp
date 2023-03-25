@@ -32,6 +32,11 @@
 	</script>
 </head>
 <body>
+	<c:if test="${empty member}">
+		<script>
+			location.href='${conPath}/loginView.do?next=exView.do';
+		</script>
+	</c:if>
 	<c:if test="${not empty exResult }">
 		<script>
 			alert('${exResult}');

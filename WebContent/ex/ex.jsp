@@ -50,15 +50,15 @@
 						+'</td>'
 						+'<th>무게</th>'
 						+'<td>'
-						+'	<input type="number" name="eweight" class="ex">'
+						+'	<input type="number" name="eweight" class="ex" min="0">'
 						+'</td>'
 						+'<th>세트 수</th>'
 						+'<td>'
-						+'	<input type="number" name="eset" class="ex" required="required">'
+						+'	<input type="number" name="eset" class="ex" required="required" min="1">'
 						+'</td>'
 						+'<th>운동개수</th>'
 						+'<td>'
-						+'	<input type="number" name="ecount"  class="ex" required="required">'
+						+'	<input type="number" name="ecount"  class="ex" required="required" min="1">'
 						+'</td>'
 						+'<td>'
 						+'	<input type="button" value="X" class="delete">'
@@ -100,15 +100,15 @@
 					</td>						
 					<th>무게</th>
 					<td>
-						<input type="number" name="eweight" class="eweight">
+						<input type="number" name="eweight" class="eweight" value="0" min="0">
 					</td>
 					<th>세트 수</th>
 					<td>
-						<input type="number" name="eset" class="ex" required="required">
+						<input type="number" name="eset" class="ex" required="required" min="1">
 					</td>
 					<th>운동개수</th>
 					<td>
-						<input type="number" name="ecount"  class="ex" required="required"> 
+						<input type="number" name="ecount"  class="ex" required="required" min="1"> 
 					</td>
 					<td>
 						<input type="button" value="X" class="delete"> 
@@ -121,7 +121,6 @@
 					<td colspan="4">
 						시작시간<input type="time" name="startTime" class="time"> 
 						종료시간<input type="time" name="endTime" class="time"> 
-						<input type="hidden" name="etime">
 					</td>
 					<td colspan="3">
 						<input type="button" onclick="startClock()" value="start" class="timer">

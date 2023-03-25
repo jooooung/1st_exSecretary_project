@@ -96,11 +96,8 @@ DELETE FROM BCOMMENT WHERE MID = 'member2';
 
 --------------- INBODY ---------------
 -- 내 INBODY 목록 (등록일 내림차순)
-SELECT * FROM
-    (SELECT ROWNUM RN, I.* 
-        FROM (SELECT * FROM INBODY WHERE MID = 'member1' 
-            ORDER BY IDATE DESC) I)
-    WHERE RN BETWEEN 1 AND 3;
+SELECT * FROM INBODY WHERE MID = 'member1' 
+            ORDER BY IDATE DESC;
 -- INBODY 상세보기
 SELECT * FROM INBODY WHERE INUM = 3 AND MID = 'member2';
 -- 1. INBODY 등록

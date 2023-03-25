@@ -35,22 +35,17 @@ public class InbodyDao {
 		return conn;
 	}
 	// 내 inbody 목록(mid)
-	public ArrayList<InbodyDto> listInbody(String mid, int startRow, int endRow){
+	public ArrayList<InbodyDto> listInbody(String mid){
 		ArrayList<InbodyDto> dtos = new ArrayList<InbodyDto>();
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
-		String sql = "SELECT * FROM" + 
-				"    (SELECT ROWNUM RN, I.* " + 
-				"        FROM (SELECT * FROM INBODY WHERE MID = ? " + 
-				"            ORDER BY IDATE DESC) I)" + 
-				"    WHERE RN BETWEEN ? AND ?";
+		String sql = "SELECT * FROM INBODY WHERE MID = ? " + 
+				"            ORDER BY IDATE DESC";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int inum = rs.getInt("inum");

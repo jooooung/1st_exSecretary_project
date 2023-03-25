@@ -13,6 +13,7 @@ import com.lec.exSec.service.ALoginService;
 import com.lec.exSec.service.ExRecordListService;
 import com.lec.exSec.service.ExRecordWriteService;
 import com.lec.exSec.service.ExService;
+import com.lec.exSec.service.InbodyListService;
 import com.lec.exSec.service.JoinService;
 import com.lec.exSec.service.LoginService;
 import com.lec.exSec.service.MLogoutService;
@@ -25,6 +26,7 @@ import com.lec.exSec.service.PreExService;
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private int join = 0;
+	private int doEx = 0;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		actionDo(request, response);
 	}
@@ -80,10 +82,14 @@ public class FrontController extends HttpServlet {
 		}else if(command.equals("/exView.do")) {	// 운동하기 페이지
 			service = new PreExService();
 			service.execute(request, response);
+			doEx = 1;
 			viewPage = "ex/ex.jsp";
 		}else if(command.equals("/ex.do")) {	// 운동하기에서 한 운동 저장
-			service = new ExService();
-			service.execute(request, response);
+			if(doEx == 1) {
+				service = new ExService();
+				service.execute(request, response);
+				doEx = 0;
+			}
 			viewPage = "exRecordList.do";
 		}else if(command.equals("/exRecordList.do")) {	// 운동기록 목록
 			service = new ExRecordListService();
@@ -95,6 +101,10 @@ public class FrontController extends HttpServlet {
 			service = new ExRecordWriteService();
 			service.execute(request, response);
 			viewPage = "exRecordList.do";
+		}else if(command.equals("/inbodyList.do")) {	// 나의 변화 페이지
+			service = new InbodyListService();
+			service.execute(request, response);
+			viewPage = "inbody/inbodyList.jsp";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

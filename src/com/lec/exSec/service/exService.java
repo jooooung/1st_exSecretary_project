@@ -22,11 +22,12 @@ public class ExService implements Service {
 		int epno = 0;
 		for (int i = 0; i < epnoStr.length; i++) {
 			epnoArr[i] = Integer.parseInt(epnoStr[i]);
-			epno = epnoArr[i];
+			epno += epnoArr[i];
 		}
-		
 		String eweightStr = request.getParameter("eweight");
+		if(eweightStr == null) eweightStr = "0";
 		double eweight = Double.valueOf(eweightStr);
+		System.out.println(eweight);
 		int eset = Integer.parseInt(request.getParameter("eset"));
 		int ecount = Integer.parseInt(request.getParameter("ecount"));
 		String etimeStr = request.getParameter("etime");
