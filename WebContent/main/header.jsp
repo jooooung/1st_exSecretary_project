@@ -78,9 +78,9 @@
 		</div>
 		<div class="lnb">
 			<ul>
-				<li><a href="#">운동관리</a></li>
+				<li><a href="exPartList.do">운동관리</a></li>
 				<li><a href="#">자유게시판</a></li>
-				<li><a href="#">회원목록</a></li>
+				<li><a href="">회원목록</a></li>
 			</ul>
 		</div>
 	</c:if>

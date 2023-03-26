@@ -9,6 +9,18 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
+	<style>
+		table{
+			background-color: white;
+			height: auto;
+			border-radius: 10px;
+		}
+		#chart_div{
+			width: 90%;
+			margin: 20px auto;
+		}
+		
+	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
@@ -22,14 +34,39 @@
 			location.href='${conPath}/loginView.do?next=exView.do';
 		</script>
 	</c:if>
+	<c:if test="${not empty inbodyWriteResult }">
+		<script>
+			alert('${inbodyWriteResult}');
+		</script>
+	</c:if>
+	<c:if test="${not empty inbodyWriteError }">
+		<script>
+			alert('${inbodyWriteError}');
+			history.back();
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="${conPath }/inbody/chart.js"></script>
+  <div id="chart_div"></div>
 		<table>
+			<tr>
+				<th>no</th><th>몸무게(kg)</th><th>체지방률(kg)</th><th>골격근량(kg)</th><th>날짜</th>
+			</tr>
 			<c:forEach var="dto" items="${inbody }">
-					<tr>
-						<td>${dto.iweight}</td>
-					</tr>
-				</c:forEach>
+				<tr>
+					<td>${dto.inum}</td>
+					<td>${dto.iweight}kg</td>
+					<td>${dto.ifat}</td>
+					<td>${dto.imuscle}</td>
+					<td>${dto.idate}</td>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td colspan="5">
+					<input type="button" value="기록 추가" class="btn" onclick="location.href='${conPath}/inbodyWriteView.do'">
+				<td>
 		</table>
 	</div>
 	<jsp:include page="../main/footer.jsp"/>	

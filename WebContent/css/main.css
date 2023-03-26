@@ -1,6 +1,6 @@
 @charset "UTF-8";
 	html,body {
-        height: 100%;
+        height: 563px;
         padding: 0px;
         margin: 0 auto;
     }
@@ -12,7 +12,7 @@
 			width: 100%;
 			height: auto;
 			min-height: 100%;
-			padding: 100px 0 80px;
+			padding: 30px 0 80px;
 			background-image: url("https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fCVFQyU5QSVCNCVFQiU4RiU5OXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60");
 			background-size:  100% 100%;
 			background-repeat: no-repeat;
@@ -28,10 +28,11 @@
 		#content table {
 			width: 90%;
 			margin: 0 auto;
+			padding-bottom: 10px;
 		}
 		#content table caption{
 			font-size: 2em;
-			color: #cfcfda;
+			color: black;
 			margin: 50px 0;
 		}
 		#content table tr{
@@ -71,4 +72,6 @@
 			border: 0;
 			border-bottom: 2px solid #cfcfda;
 		}
+		
+		
 		

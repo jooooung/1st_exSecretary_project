@@ -5,10 +5,8 @@
 }
 
 header{
-	position: fixed;
 	width: 100%;
 	overflow: hidden;
-	
 }
 header a {
 	text-decoration: none;

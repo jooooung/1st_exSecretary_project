@@ -37,6 +37,11 @@
 	</script>
 </head>
 <body>
+	<c:if test="${empty member }">
+		<script>
+			location.href='${conPath}/loginView.do?next=exRecordWriteView.do';
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
 		<form action="exRecordWrite.do">
@@ -46,43 +51,41 @@
 					<th>운동선택</th>
 					<td>
 						<select name="expart">
-								<option>${expart}</option>
+							<c:forEach var="dto" items="${expart }">
+								<option value="${dto.epno }">${dto }</option>
+							</c:forEach>
 						</select>	
 					</td>						
 					<th>무게</th>
 					<td>
-						<input type="number" name="eweight" class="eweight">
+						<input type="number" name="eweight" class="eweight" min="0" required="required" value="0"> 
 					</td>
 					<th>세트 수</th>
 					<td>
-						<input type="number" name="eset" class="ex" required="required">
+						<input type="number" name="eset" class="ex" required="required" min="0">
 					</td>
 					<th>운동개수</th>
 					<td>
-						<input type="number" name="ecount"  class="ex" required="required"> 
+						<input type="number" name="ecount"  class="ex" required="required" min="0"> 
 					</td>
 					<td>
 						<input type="button" value="X" class="delete"> 
 					</td>
-					<th>운동시간</th>
-					<td>
-						<input type="time" name="etime"  value="00" placeholder="">
+				</tr>
+				<tr>
+					<td></td>
+					<th colspan="2" >운동시간</th>
+					<td colspan="2">
+						시작시간<input type="time" name="startTime">
 					</td>
+					<td></td>
+					<td colspan="2">
+						종료시간<input type="time" name="endTime">
+					</td>
+					<td></td>
 				</tr>
 			</table>
 			<table>
-				<tr>
-					<td colspan="4">
-						<span id="hour">00</span> :
-						<span id="min">00</span> :
-						<span id="sec">00</span>
-					</td>
-					<td colspan="3">
-						<input type="button" onclick="startClock()" value="start" class="timer">
-						<input type="button" onclick="stopClock()" value="stop" class="timer">
-						<input type="button" onclick="resetClock()" value="reset" class="timer">
-					</td>
-				</tr>
 				<tr>
 					<td colspan="7">
 						<input type="button" value="운동 추가" class="btn addEx">

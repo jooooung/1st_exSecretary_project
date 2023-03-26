@@ -83,13 +83,13 @@
 				<tr>
 						<th><label for="oldMpw">비밀번호</label></th>
 						<td>
-							<input type="password" name="oldMpw" required="required">
+							<input type="password" name="oldMpw" required="required" placeholder="비밀번호를 입력해주세요">
 						</td>
 					</tr>
 					<tr>
 						<th><label for="mpw">새 비밀번호</label></th>
 						<td colspan="2">
-							<input type="password" name="mpw" id="mpw" class="mpw" size="30">
+							<input type="password" name="mpw" id="mpw" class="mpw" size="30" placeholder="비밀번호 변경 시 입력">
 							<div id="mpwChkResult"> &nbsp; &nbsp; &nbsp; </div>
 						</td>
 					</tr>

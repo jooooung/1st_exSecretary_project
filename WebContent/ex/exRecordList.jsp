@@ -14,7 +14,7 @@
 			background-color: white;
 			width: 700px;
 			height: auto;
-			margin:20px auto;
+			margin:0 auto;
 			border-radius: 10px;
 		}
 		table tr:first-child {
@@ -45,6 +45,17 @@
 	<c:if test="${not empty exFailResult }">
 		<script>
 			alert('${exFailResult}');
+			history.back();
+		</script>
+	</c:if>
+	<c:if test="${not empty exRecordWriteResult }">
+		<script>
+			alert('${exRecordWriteResult}');
+		</script>
+	</c:if>
+	<c:if test="${not empty exRecordWriteError }">
+		<script>
+			alert('${exRecordWriteError}');
 			history.back();
 		</script>
 	</c:if>

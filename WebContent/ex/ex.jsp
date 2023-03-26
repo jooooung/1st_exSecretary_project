@@ -100,7 +100,7 @@
 					</td>						
 					<th>무게</th>
 					<td>
-						<input type="number" name="eweight" class="eweight" value="0" min="0">
+						<input type="number" name="eweight" class="eweight" value="0" min="0" required="required">
 					</td>
 					<th>세트 수</th>
 					<td>

@@ -151,7 +151,7 @@ public class ExPartDao {
 		ResultSet         rs    = null;
 		String sql = "SELECT * FROM " + 
 				"    (SELECT ROWNUM RN, EP.* FROM" + 
-				"        (SELECT * FROM EXPART) EP)" + 
+				"        (SELECT * FROM EXPART ORDER BY EPPART) EP)" + 
 				"    WHERE RN BETWEEN ? AND ?";
 		try {
 			conn = getConnection();

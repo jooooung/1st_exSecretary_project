@@ -16,7 +16,10 @@ public class ExService implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		MemberDto member = (MemberDto) session.getAttribute("member");
-		String mid = member.getMid();
+		String mid = "";
+		if(member != null) {
+			mid = member.getMid();
+		}
 		String[] epnoStr = request.getParameterValues("expart");
 		int[] epnoArr = new int[epnoStr.length];
 		int epno = 0;
@@ -27,7 +30,6 @@ public class ExService implements Service {
 		String eweightStr = request.getParameter("eweight");
 		if(eweightStr == null) eweightStr = "0";
 		double eweight = Double.valueOf(eweightStr);
-		System.out.println(eweight);
 		int eset = Integer.parseInt(request.getParameter("eset"));
 		int ecount = Integer.parseInt(request.getParameter("ecount"));
 		String etimeStr = request.getParameter("etime");

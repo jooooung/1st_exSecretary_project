@@ -44,7 +44,7 @@ public class ExDao {
 				"    (SELECT ROWNUM RN, E.* " + 
 				"        FROM (SELECT E.*, ENAME FROM EX E, EXPART EP" + 
 				"              WHERE E.EPNO = EP.EPNO " + 
-				"                AND MID = ? ORDER BY EDATE DESC) E)" + 
+				"                AND MID = ? ORDER BY EDATE DESC, ENO DESC) E)" + 
 				"    WHERE RN BETWEEN ? AND ?";
 		try {
 			conn = getConnection();
