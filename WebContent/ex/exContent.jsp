@@ -17,6 +17,9 @@
 			margin:0 auto;
 			border-radius: 10px;
 		}
+		table tr:nth-child(3) td:first-child {
+			display: none;
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
@@ -28,7 +31,18 @@
 <body>
 	<c:if test="${empty member }">
 		<script>
-			location.href='${conPath}/loginView.do?next=exContent.do?eno=${exContent.eno}';
+			location.href='${conPath}/loginView.do?next=exContent.do?eno=exContent.eno';
+		</script>
+	</c:if>
+	<c:if test="${not empty exRecordModifyResult }">
+		<script>
+			alert('${exRecordModifyResult}');
+		</script>
+	</c:if>
+	<c:if test="${not empty exRecordModifyError}">
+		<script>
+			alert('${exRecordModifyError}');
+			history.back();
 		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>
@@ -40,6 +54,7 @@
 				<th>운동명</th><th>세트수</th><th>개수</th><th>시간</th><th>날짜</th>
 			</tr>
 			<tr>
+				<td>${exContent.eno }</td>
 				<td>${exContent.ename }</td>
 				<td>${exContent.eset }</td>
 				<td>${exContent.ecount }</td>
@@ -58,9 +73,15 @@
 			<tr></tr>
 			<tr>
 				<td colspan="5">
-					<button class="btn">운동기록 수정</button>
-					<button class="btn">운동기록 삭제</button>
-					<button class="btn">운동기록 목록</button>
+					<button onclick="location.href='${conPath}/exRecordModifyView.do?eno='+${exContent.eno }" class="btn">
+						운동기록 수정
+					</button>
+					<button onclick="location.href='${conPath}/exRecordDelete.do?eno='+${exContent.eno}" class="btn">
+						운동기록 삭제
+					</button>
+					<button onclick="location.href='${conPath}/exRecordList.do?pageNum='+${pageNum}" class="btn">
+						운동기록 목록
+					</button>
 				</td>
 			</tr>
 		</table>

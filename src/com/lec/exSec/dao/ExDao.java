@@ -14,6 +14,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.lec.exSec.dto.ExDto;
+import com.lec.exSec.dto.InbodyDto;
 
 public class ExDao {
 	public static final int FAIL = 0;
@@ -195,7 +196,7 @@ public class ExDao {
 				"              EHOUR = ?," + 
 				"              EMIN = ?," + 
 				"              ESEC = ?," +
-				"              EDATE = " + 
+				"              EDATE = ?" + 
 				"        WHERE MID = ? AND ENO = ?";
 		try {
 			conn = getConnection();
@@ -225,31 +226,20 @@ public class ExDao {
 		return result;
 	}
 	// 5. 운동회차 삭제
-	public int deleteExBoard(int bnum) {
+	public int deleteExRecord(int eno, String mid) {
 		int result = FAIL;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE EXBOARD SET MID = ?," + 
-				"                   AID = ?," + 
-				"                   BTITLE = ?," + 
-				"                   BCONTENT = ?," + 
-				"                   BPHOTO = ?," + 
-				"                   BHIT = ?" + 
-				"             WHERE BNUM = ?";
+		String sql = "DELETE FROM EX WHERE ENO = ? AND MID = ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, null);
-			pstmt.setString(2, null);
-			pstmt.setString(3, "삭제된 글입니다");
-			pstmt.setString(4, null);
-			pstmt.setString(5, null);
-			pstmt.setInt(6, 0);
-			pstmt.setInt(7, bnum);
+			pstmt.setInt(1, eno);
+			pstmt.setString(2, mid);
 			result = pstmt.executeUpdate();
-			System.out.println(result == SUCCESS ? "글삭제 성공":"글번호 오류");
+			System.out.println(result == SUCCESS ? "운동기록 삭제 성공":"운동기록번호 or 아이디 오류");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage() + "글 삭제 실패 ");
+			System.out.println(e.getMessage() + "운동기록 삭제 실패 ");
 		} finally {
 			try {
 				if(pstmt != null) pstmt.close();

@@ -14,6 +14,8 @@ import com.lec.exSec.service.ExContentService;
 import com.lec.exSec.service.ExPartListService;
 import com.lec.exSec.service.ExPartWriteService;
 import com.lec.exSec.service.ExRecordListService;
+import com.lec.exSec.service.ExRecordModifyService;
+import com.lec.exSec.service.ExRecordModifyViewService;
 import com.lec.exSec.service.ExRecordWriteService;
 import com.lec.exSec.service.ExService;
 import com.lec.exSec.service.InbodyContentService;
@@ -28,6 +30,7 @@ import com.lec.exSec.service.MemberModifyService;
 import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.PreExRecordWriteService;
 import com.lec.exSec.service.Service;
+import com.lec.exSec.service.exRecordDeleteService;
 import com.lec.exSec.service.inbodyWriteService;
 import com.lec.exSec.service.PreExService;
 
@@ -104,6 +107,14 @@ public class FrontController extends HttpServlet {
 			service = new ExContentService();
 			service.execute(request, response);
 			viewPage = "ex/exContent.jsp"; 
+		}else if(command.equals("/exRecordModifyView.do")) {		// 특정 운동기록 수정 페이지 
+			service = new ExRecordModifyViewService();
+			service.execute(request, response);
+			viewPage = "ex/exRecordMoidfy.jsp";
+		}else if(command.equals("/exRecordModify.do")) {		// 특정 운동기록 수정 저장 
+			service = new ExRecordModifyService();
+			service.execute(request, response);
+			viewPage = "exContent.do";
 		}else if(command.equals("/exRecordWriteView.do")) {		// 운동기록 등록페이지
 			service = new PreExRecordWriteService();
 			service.execute(request, response);
@@ -116,7 +127,11 @@ public class FrontController extends HttpServlet {
 				result = 0;
 			}
 			viewPage = "exRecordList.do";
-		/* * * * * * * * * * * * member-나의 변화 * * * * * * * * * * * */
+		}else if(command.equals("/exRecordDelete.do")){	// 특정 운동기록 삭제
+			service = new exRecordDeleteService();
+			service.execute(request, response);
+			viewPage = "exRecordList.do";
+			/* * * * * * * * * * * * member-나의 변화 * * * * * * * * * * * */
 		}else if(command.equals("/inbodyList.do")) {	// 나의 변화 페이지
 			service = new InbodyListService();
 			service.execute(request, response);

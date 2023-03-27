@@ -71,6 +71,17 @@
 			history.back();
 		</script>
 	</c:if>
+	<c:if test="${not empty exRecordDeleteResult }">
+		<script>
+			alert('${exRecordDeleteResult}');
+		</script>
+	</c:if>
+	<c:if test="${not empty exRecordDeleteError }">
+		<script>
+			alert('${exRecordDeleteError}');
+			history.back();
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
 		<table>
