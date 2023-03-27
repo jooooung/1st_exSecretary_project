@@ -23,11 +23,23 @@
 		.paging, .paging a{
 			color: white;
 		}
+		table .ex td:first-child{
+			display: none;
+		}
+		table .ex:hover{
+			background-color: #cfcfda;
+			cursor: pointer;
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
-			
+			$('tr.ex').click(function(){
+				var eno = $(this).children().eq(0).text();
+				if(! isNaN(eno)){
+					location.href = '${conPath }/exContent.do?eno='+eno;
+				}
+			});
 		});
 	</script>
 </head>
@@ -70,12 +82,22 @@
 			</c:if>
 			<c:if test="${exList.size() != 0 }">
 				<c:forEach var="dto" items="${exList }">
-					<tr>
+					<tr class="ex">
+						<td>${dto.eno }</td>
 						<td>${dto.ename}</td>
 						<td>${dto.eweight}</td>
 						<td>${dto.eset}</td>
 						<td>${dto.ecount}</td>
-						<td>${dto.etime}</td>
+						<td>
+							<c:if test="${dto.ehour < 10}">0${dto.ehour}</c:if>
+							<c:if test="${dto.ehour >= 10}">${dto.ehour}</c:if>
+							 : 
+							<c:if test="${dto.emin < 10}">0${dto.emin}</c:if>
+							<c:if test="${dto.emin >= 10}">${dto.emin}</c:if>
+							 :
+							<c:if test="${dto.esec < 10}">0${dto.esec}</c:if>
+							<c:if test="${dto.esec >= 10}">${dto.esec}</c:if>
+						</td>
 						<td>${dto.edate}</td>
 					</tr>
 				</c:forEach>

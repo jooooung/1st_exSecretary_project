@@ -22,12 +22,15 @@
 		table .inbody td:first-child{
 			display: none;
 		}
+		table .inbody:hover{
+			background-color: #cfcfda;
+			cursor: pointer;
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
 			$('tr.inbody').click(function(){
-				/* var inum = document.getElementById('inum').value; */
 				var inum = $(this).children().eq(0).text();
 				if(! isNaN(inum)){
 					location.href = '${conPath }/inbodyContent.do?inum='+inum;
@@ -50,6 +53,28 @@
 	<c:if test="${not empty inbodyWriteError }">
 		<script>
 			alert('${inbodyWriteError}');
+			history.back();
+		</script>
+	</c:if>
+	<c:if test="${not empty inbodyModifyResult }">
+		<script>
+			alert('${inbodyModifyResult }');
+		</script>
+	</c:if>
+	<c:if test="${not empty inbodyModifyError }">
+		<script>
+			alert('${inbodyModifyError}');
+			history.back();
+		</script>
+	</c:if>
+	<c:if test="${not empty inbodyDeleteResult }">
+		<script>
+			alert('${inbodyDeleteResult }');
+		</script>
+	</c:if>
+	<c:if test="${not empty inbodyDeleteError}">
+		<script>
+			alert('${inbodyDeleteError}');
 			history.back();
 		</script>
 	</c:if>

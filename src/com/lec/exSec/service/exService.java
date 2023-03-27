@@ -1,7 +1,6 @@
 package com.lec.exSec.service;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,12 +31,13 @@ public class ExService implements Service {
 		double eweight = Double.valueOf(eweightStr);
 		int eset = Integer.parseInt(request.getParameter("eset"));
 		int ecount = Integer.parseInt(request.getParameter("ecount"));
-		String etimeStr = request.getParameter("etime");
-		Timestamp etime = new Timestamp(System.currentTimeMillis());
+		int ehour = Integer.parseInt(request.getParameter("ehour"));
+		int emin = Integer.parseInt(request.getParameter("emin"));
+		int esec = Integer.parseInt(request.getParameter("esec"));
 		Date edate = new Date(System.currentTimeMillis());
 		String ename = request.getParameter("ename");
 		ExDao eDao = ExDao.getInstance();
-		ExDto ex = new ExDto(0, mid, epno, eweight, eset, ecount, etime, edate, ename);
+		ExDto ex = new ExDto(0, mid, epno, eweight, eset, ecount, ehour, emin, esec, edate, ename);
 		int result = eDao.writeEx(ex);
 		if(result == ExDao.SUCCESS) {
 			request.setAttribute("exResult", "오늘의 운동 완료!");

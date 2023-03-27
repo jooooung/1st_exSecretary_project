@@ -97,11 +97,13 @@ DELETE FROM BCOMMENT WHERE MID = 'member2';
 --------------- INBODY ---------------
 -- 내 INBODY 목록 (등록일 내림차순)
 SELECT * FROM INBODY WHERE MID = 'member1' 
-            ORDER BY IDATE DESC;
+            ORDER BY IDATE DESC, INUM DESC;
 -- INBODY 상세보기
 SELECT * FROM INBODY WHERE INUM = 3 AND MID = 'member2';
 -- 1. INBODY 등록
 INSERT INTO INBODY VALUES (INBODY_SEQ.NEXTVAL, 'member3', '50', '12', '15', SYSDATE);
+-- 정보수정VIEW
+SELECT * FROM INBODY WHERE INUM = 1 AND MID = 'member1';
 -- 2. 정보 수정
 UPDATE INBODY SET IWEIGHT = '48',
                   IFAT = '11',
@@ -119,7 +121,7 @@ SELECT * FROM
     (SELECT ROWNUM RN, E.* 
         FROM (SELECT E.*, ENAME FROM EX E, EXPART EP
               WHERE E.EPNO = EP.EPNO 
-                AND MID = 'member1' ORDER BY EDATE DESC, ENO DESC) E)
+                AND MID = 'member1' ORDER BY ENO DESC, EDATE DESC) E)
     WHERE RN BETWEEN 1 AND 5;
 -- 총개수
 SELECT COUNT(*) FROM EX WHERE MID = 'member1';
@@ -129,13 +131,16 @@ SELECT E.*, ENAME
     WHERE E.EPNO = EP.EPNO 
       AND MID = 'member1' AND ENO = 1;
 -- 3. 운동회차 추가
-INSERT INTO EX VALUES (EX_SEQ.NEXTVAL, 'member3', '1', '30', '5', '12', NULL, SYSDATE);
+INSERT INTO EX 
+    VALUES (EX_SEQ.NEXTVAL, 'member1', '1', NULL, '5', '15', '02', '10', '11', SYSDATE);
 -- 4. 운동회차 내용 수정
 UPDATE EX SET EPNO = '2',
               EWEIGHT = '15',
               ESET = '3',
               ECOUNT = '30',
-              ETIME = NULL,
+              EHOUR = NULL,
+              EMIN = NULL,
+              ESEC = NULL,
               EDATE = '23-03-01'
         WHERE MID = 'member3' AND ENO = '3';
 -- 5. 운동회차 삭제

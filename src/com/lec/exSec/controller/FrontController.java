@@ -10,13 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.exSec.service.ALoginService;
+import com.lec.exSec.service.ExContentService;
 import com.lec.exSec.service.ExPartListService;
 import com.lec.exSec.service.ExPartWriteService;
 import com.lec.exSec.service.ExRecordListService;
 import com.lec.exSec.service.ExRecordWriteService;
 import com.lec.exSec.service.ExService;
 import com.lec.exSec.service.InbodyContentService;
+import com.lec.exSec.service.InbodyDeleteService;
 import com.lec.exSec.service.InbodyListService;
+import com.lec.exSec.service.InbodyModifyService;
 import com.lec.exSec.service.InbodyModifyViewService;
 import com.lec.exSec.service.JoinService;
 import com.lec.exSec.service.LoginService;
@@ -46,6 +49,7 @@ public class FrontController extends HttpServlet {
 		String viewPage = null;
 		Service service = null;
 		/* * * * * * * * * * * * member * * * * * * * * * * * */
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * */
 		if(command.equals("/main.do")) {	// 메인페이지
 			viewPage = "main/main.jsp";
 		}else if(command.equals("/loginView.do")) {	// member 로그인 페이지
@@ -78,6 +82,7 @@ public class FrontController extends HttpServlet {
 			service = new MLogoutService();
 			service.execute(request, response);
 			viewPage = "main.do";
+		/* * * * * * * * * * * * member-운동하기 * * * * * * * * * * * */	
 		}else if(command.equals("/exView.do")) {	// 운동하기 페이지
 			service = new PreExService();
 			service.execute(request, response);
@@ -90,10 +95,15 @@ public class FrontController extends HttpServlet {
 				result = 0;
 			}
 			viewPage = "exRecordList.do";
+		/* * * * * * * * * * * * member-운동기록 * * * * * * * * * * * */
 		}else if(command.equals("/exRecordList.do")) {	// 운동기록 목록
 			service = new ExRecordListService();
 			service.execute(request, response);
 			viewPage = "ex/exRecordList.jsp"; 
+		}else if(command.equals("/exContent.do")) {	// 운동기록 상세보기
+			service = new ExContentService();
+			service.execute(request, response);
+			viewPage = "ex/exContent.jsp"; 
 		}else if(command.equals("/exRecordWriteView.do")) {		// 운동기록 등록페이지
 			service = new PreExRecordWriteService();
 			service.execute(request, response);
@@ -106,6 +116,7 @@ public class FrontController extends HttpServlet {
 				result = 0;
 			}
 			viewPage = "exRecordList.do";
+		/* * * * * * * * * * * * member-나의 변화 * * * * * * * * * * * */
 		}else if(command.equals("/inbodyList.do")) {	// 나의 변화 페이지
 			service = new InbodyListService();
 			service.execute(request, response);
@@ -124,11 +135,19 @@ public class FrontController extends HttpServlet {
 			service = new InbodyContentService();
 			service.execute(request, response);
 			viewPage = "inbody/inbodyContent.jsp";
-		}else if(command.equals("/inbodyModifyView.do")){
+		}else if(command.equals("/inbodyModifyView.do")){	// 나의변화 수정하기 페이지
 			service = new InbodyModifyViewService();
 			service.execute(request, response);
 			viewPage = "inbody/inbodyModify.jsp";
-		} else if(command.equals("/aLoginView.do")) {	// admin 로그인 페이지
+		}else if(command.equals("/inbodyModify.do")){	// 나의변화 수정 저장
+			service = new InbodyModifyService();
+			service.execute(request, response);
+			viewPage = "inbodyList.do";
+		}else if(command.equals("/inbodyDelete.do")){	// 나의변화 삭제
+			service = new InbodyDeleteService();
+			service.execute(request, response);
+			viewPage = "inbodyList.do";
+		}else if(command.equals("/aLoginView.do")) {	// admin 로그인 페이지
 			viewPage = "admin/adminLogin.jsp";
 		}else if(command.equals("/aLogin.do")) {	// admin 로그인 처리
 			service = new ALoginService();

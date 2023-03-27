@@ -15,14 +15,14 @@
 			height: auto;
 			border-radius: 10px;
 		}
-		table tr:nth-child(2) td:first-child{
+		table tr.inbody td:first-child{
 			display: none;
 		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
-			
+
 		});
 	</script>
 </head>
@@ -38,7 +38,7 @@
 			<tr>
 				<th>몸무게(kg)</th><th>체지방률(kg)</th><th>골격근량(kg)</th><th>날짜</th>
 			</tr>
-			<tr>
+			<tr class="inbody">
 				<td>${inbody.inum }</td>
 				<td>${inbody.iweight }kg</td>
 				<td>${inbody.ifat }kg</td>
@@ -47,9 +47,9 @@
 			</tr>
 			<tr>
 				<td colspan="5">
-					<input type="button" value="기록 수정" class="btn" onclick="location.href='${conPath}/inbodyModifyView.do'">
+					<input type="button" value="기록 수정" class="btn" onclick="location.href='${conPath}/inbodyModifyView.do?inum='+${inbody.inum}">
 					<input type="button" value="목록" class="btn" onclick="location.href='${conPath}/inbodyList.do'">
-					<input type="button" value="기록 삭제" class="btn" onclick="location.href='${conPath}/inbodyDelete.do'">
+					<input type="button" value="기록 삭제" class="btn" onclick="location.href='${conPath}/inbodyDelete.do?inum='+${inbody.inum}">
 				</td>
 			</tr>
 		</table>

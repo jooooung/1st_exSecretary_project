@@ -23,10 +23,19 @@ public class ExRecordWriteService implements Service {
 		double eweight = Double.valueOf(request.getParameter("eweight"));
 		int eset = Integer.parseInt(request.getParameter("eset"));
 		int ecount = Integer.parseInt(request.getParameter("ecount"));
+		String ehourStr = request.getParameter("ehour");
+		if(ehourStr == "00") ehourStr = null;
+		int ehour = Integer.parseInt(ehourStr);
+		String eminStr = request.getParameter("emin");
+		if(eminStr == "00" && ehourStr == "00") ehourStr = null;
+		int emin = Integer.parseInt(eminStr);
+		String esecStr = request.getParameter("esec");
+		if(esecStr == "00") ehourStr = null;
+		int esec = Integer.parseInt(ehourStr);
 		Date edate = new Date(System.currentTimeMillis());
 		String ename = request.getParameter("ename");
 		ExDao eDao = ExDao.getInstance();
-		ExDto eDto = new ExDto(0, mid, epno, eweight, eset, ecount, null, edate, ename);
+		ExDto eDto = new ExDto(0, mid, epno, eweight, eset, ecount, ehour, emin, esec, edate, ename);
 		int result = eDao.writeEx(eDto);
 		if(result == ExDao.SUCCESS) {
 			request.setAttribute("exRecordWriteResult", "운동기록 등록 성공");

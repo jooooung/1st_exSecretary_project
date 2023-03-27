@@ -44,7 +44,7 @@ public class ExDao {
 				"    (SELECT ROWNUM RN, E.* " + 
 				"        FROM (SELECT E.*, ENAME FROM EX E, EXPART EP" + 
 				"              WHERE E.EPNO = EP.EPNO " + 
-				"                AND MID = ? ORDER BY EDATE DESC, ENO DESC) E)" + 
+				"                AND MID = ? ORDER BY ENO DESC, EDATE DESC) E)" + 
 				"    WHERE RN BETWEEN ? AND ?";
 		try {
 			conn = getConnection();
@@ -60,10 +60,12 @@ public class ExDao {
 				double eweight = rs.getDouble("eweight");
 				int eset = rs.getInt("eset");
 				int ecount = rs.getInt("ecount");
-				Timestamp etime = rs.getTimestamp("etime");
+				int ehour = rs.getInt("ehour");
+				int emin = rs.getInt("emin");
+				int esec = rs.getInt("esec");
 				Date edate = rs.getDate("edate");
 				String ename = rs.getString("ename");
-				dtos.add(new ExDto(eno, mid, epno, eweight, eset, ecount, etime, edate, ename));
+				dtos.add(new ExDto(eno, mid, epno, eweight, eset, ecount, ehour, emin, esec, edate, ename));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -128,10 +130,12 @@ public class ExDao {
 				double eweight = rs.getDouble("eweight");
 				int eset = rs.getInt("eset");
 				int ecount = rs.getInt("ecount");
-				Timestamp etime = rs.getTimestamp("etime");
+				int ehour = rs.getInt("ehour");
+				int emin = rs.getInt("emin");
+				int esec = rs.getInt("esec");
 				Date edate = rs.getDate("edate");
 				String ename = rs.getString("ename");
-				dto = new ExDto(eno, mid, epno, eweight, eset, ecount, etime, edate, ename);
+				dto = new ExDto(eno, mid, epno, eweight, eset, ecount, ehour, emin, esec, edate, ename);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -151,7 +155,7 @@ public class ExDao {
 		int result = FAIL;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO EX VALUES (EX_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO EX VALUES (EX_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -160,8 +164,10 @@ public class ExDao {
 			pstmt.setDouble(3, dto.getEweight());
 			pstmt.setInt(4, dto.getEset());
 			pstmt.setInt(5, dto.getEcount());
-			pstmt.setTimestamp(6, dto.getEtime());
-			pstmt.setDate(7, dto.getEdate());
+			pstmt.setInt(6, dto.getEhour());
+			pstmt.setInt(7, dto.getEmin());
+			pstmt.setInt(8, dto.getEsec());
+			pstmt.setDate(9, dto.getEdate());
 			pstmt.executeUpdate();
 			result = SUCCESS;
 			System.out.println("ex등록 성공");
@@ -186,7 +192,9 @@ public class ExDao {
 				"              EWEIGHT = ?," + 
 				"              ESET = ?," + 
 				"              ECOUNT = ?," + 
-				"              ETIME = ?," + 
+				"              EHOUR = ?," + 
+				"              EMIN = ?," + 
+				"              ESEC = ?," +
 				"              EDATE = " + 
 				"        WHERE MID = ? AND ENO = ?";
 		try {
@@ -196,10 +204,12 @@ public class ExDao {
 			pstmt.setDouble(2, dto.getEweight());
 			pstmt.setInt(3, dto.getEset());
 			pstmt.setInt(4, dto.getEcount());
-			pstmt.setTimestamp(5, dto.getEtime());
-			pstmt.setDate(6, dto.getEdate());
-			pstmt.setString(7, dto.getMid());
-			pstmt.setInt(8, dto.getEno());
+			pstmt.setInt(5, dto.getEhour());
+			pstmt.setInt(6, dto.getEmin());
+			pstmt.setInt(7, dto.getEsec());
+			pstmt.setDate(8, dto.getEdate());
+			pstmt.setString(9, dto.getMid());
+			pstmt.setInt(10, dto.getEno());
 			result = pstmt.executeUpdate();
 			System.out.println(result == SUCCESS ? "ex수정 성공":"eno나mid 오류");
 		} catch (SQLException e) {

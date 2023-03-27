@@ -73,16 +73,18 @@
 					</td>
 				</tr>
 				<tr>
-					<td></td>
-					<th colspan="2" >운동시간</th>
-					<td colspan="2">
-						시작시간<input type="time" name="startTime">
+					<td colspan="2"></td>
+					<th>운동시간</th>
+					<td>
+						<input type="number" name="ehour" min="00" max="24" placeholder="시간">
 					</td>
-					<td></td>
-					<td colspan="2">
-						종료시간<input type="time" name="endTime">
+					<td>
+						<input type="number" name="emin" min="00" max="59" placeholder="분">
 					</td>
-					<td></td>
+					<td>
+						<input type="number" name="esec" min="00" max="59" placeholder="초">
+					</td>
+					<td colspan="2"></td>
 				</tr>
 			</table>
 			<table>

@@ -26,23 +26,34 @@
 	<div id="content">
 		<form action="inbodyModify.do" method="get">
 			<table>
-				<caption>${modifyInbody}</caption>
+				<caption>inbody 수정</caption>
 				<tr>
 					<th>몸무게(kg)</th><th>체지방률(kg)</th><th>골격근량(kg)</th><th>날짜</th>
 				</tr>
 				<tr>
 					<td>
-						<input type="number" name="iweight" value="${inbody.iweight }">
+						<input type="hidden" name="inum" value="${modifyInbody.inum }">
+						<input type="number" name="iweight" value="${modifyInbody.iweight }" required="required">
 					</td>
-					<td>${inbody.ifat }kg</td>
-					<td>${inbody.imuscle }kg</td>
-					<td>${inbody.idate }</td>
+					<td>
+						<input type="number" name="ifat" value="${modifyInbody.ifat}">
+					</td>
+					<td>
+						<input type="number" name="imuscle" value="${modifyInbody.imuscle}">
+					</td>
+					<td>
+						<input type="date" name="idate" value="${modifyInbody.idate}">
+					</td>
+				</tr>
+				<tr>
 				</tr>
 				<tr>
 					<td colspan="5">
-						<input type="button" value="수정완료" class="btn" onclick="location.href='${conPath}/inbodyModify.do'">
+						<input type="submit" value="수정완료" class="btn">
 						<input type="button" value="수정취소" class="btn" onclick="location.href='${conPath}/inbodyList.do'">
 					</td>
+				</tr>
+				<tr>
 				</tr>
 			</table>
 		</form>

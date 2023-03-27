@@ -1,7 +1,6 @@
 package com.lec.exSec.dto;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class ExDto {
 	private int eno;
@@ -10,14 +9,17 @@ public class ExDto {
 	private double eweight;
 	private int eset;
 	private int ecount;
-	private Timestamp etime;
+	private int ehour;
+	private int emin;
+	private int esec;
 	private Date edate;
 	private String ename;	// join
 	public ExDto() {
 		super();
 	}
-	public ExDto(int eno, String mid, int epno, double eweight, int eset, int ecount, Timestamp etime, Date edate,
-			String ename) {
+	
+	public ExDto(int eno, String mid, int epno, double eweight, int eset, int ecount, int ehour, int emin, int esec,
+			Date edate, String ename) {
 		super();
 		this.eno = eno;
 		this.mid = mid;
@@ -25,7 +27,9 @@ public class ExDto {
 		this.eweight = eweight;
 		this.eset = eset;
 		this.ecount = ecount;
-		this.etime = etime;
+		this.ehour = ehour;
+		this.emin = emin;
+		this.esec = esec;
 		this.edate = edate;
 		this.ename = ename;
 	}
@@ -65,12 +69,28 @@ public class ExDto {
 	public void setEcount(int ecount) {
 		this.ecount = ecount;
 	}
-	public Timestamp getEtime() {
-		return etime;
+	public int getEhour() {
+		return ehour;
 	}
-	public void setEtime(Timestamp etime) {
-		this.etime = etime;
+
+	public void setEhour(int ehour) {
+		this.ehour = ehour;
 	}
+
+	public int getEmin() {
+		return emin;
+	}
+
+	public void setEmin(int emin) {
+		this.emin = emin;
+	}
+	public int getEsec() {
+		return esec;
+	}
+	public void setEsec(int esec) {
+		this.esec = esec;
+	}
+
 	public Date getEdate() {
 		return edate;
 	}
@@ -86,6 +106,7 @@ public class ExDto {
 	@Override
 	public String toString() {
 		return "ExDto [eno=" + eno + ", mid=" + mid + ", epno=" + epno + ", eweight=" + eweight + ", eset=" + eset
-				+ ", ecount=" + ecount + ", etime=" + etime + ", edate=" + edate + ", ename=" + ename + "]";
+				+ ", ecount=" + ecount + ", ehour=" + ehour + ", emin=" + emin + ", esec=" + esec + ", edate=" + edate
+				+ ", ename=" + ename + "]";
 	}
 }

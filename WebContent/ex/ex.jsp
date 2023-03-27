@@ -13,7 +13,7 @@
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
 	<style>
 		#content form{
-			width: 1300px;
+			width: 1200px;
 		}
 		#content form td{
 			width: 130px;
@@ -49,33 +49,27 @@
 						+'	</select>'
 						+'</td>'
 						+'<th>무게</th>'
-						+'<td>'
-						+'	<input type="number" name="eweight" class="ex" min="0">'
-						+'</td>'
+						+'<td><input type="number" name="eweight" class="ex" value="0" min="0"></td>'
 						+'<th>세트 수</th>'
-						+'<td>'
-						+'	<input type="number" name="eset" class="ex" required="required" min="1">'
-						+'</td>'
+						+'<td><input type="number" name="eset" class="ex" required="required" min="1"></td>'
 						+'<th>운동개수</th>'
-						+'<td>'
-						+'	<input type="number" name="ecount"  class="ex" required="required" min="1">'
-						+'</td>'
-						+'<td>'
-						+'	<input type="button" value="X" class="delete">'
-						+'</td>'
+						+'<td><input type="number" name="ecount"  class="ex" required="required" min="1"></td>'
+						+'<td><input type="button" value="X" class="delete"></td>'
 						+'</tr>');
 			});
 			$(document).on('click', '.delete', function(){
 				$(this).parents('tr').remove(); 
 			});
+			
+			var hour = document.getElementById('hour').innerText;
+			var min = document.getElementById('min').innerText;
+			var sec = document.getElementById('sec').innerText;
+			$('input[name=ehour]').attr('value', hour);
+			$('input[name=emin]').attr('value', min);
+			$('input[name=esec]').attr('value', sec);
 		});
 	</script>
-	<script>
-		let endTime = document.getElementById('endTime');
-		let startTime = document.getElementById('startTime');
-		var etime = document.getElementById('etiem');
-		etime.value = endTime - startTime;
-	</script>
+	<script src="${conPath }/ex/timer.js"></script>
 </head>
 <body>
 	<c:if test="${empty member}">
@@ -119,8 +113,12 @@
 				<tr>
 					<th>운동시간</th>
 					<td colspan="4">
-						시작시간<input type="time" name="startTime" class="time"> 
-						종료시간<input type="time" name="endTime" class="time"> 
+						<span id="hour">00</span> :
+						<span id="min">00</span> :
+						<span id="sec">00</span>
+						<input type="hidden" name="ehour" value="" id="ehour">
+						<input type="hidden" name="emin" value="" id="emin">
+						<input type="hidden" name="esec" value="" id="esec">
 					</td>
 					<td colspan="3">
 						<input type="button" onclick="startClock()" value="start" class="timer">
@@ -131,7 +129,7 @@
 				<tr>
 					<td colspan="7">
 						<input type="button" value="운동 추가" class="btn addEx">
-						<input type="submit" value="오늘의 운동 완료" class="btn">
+						<input type="submit" value="오늘의 운동 완료" class="btn submit">
 					</td>
 				</tr>
 				</table>
