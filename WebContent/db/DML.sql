@@ -119,7 +119,7 @@ SELECT * FROM
     (SELECT ROWNUM RN, E.* 
         FROM (SELECT E.*, ENAME FROM EX E, EXPART EP
               WHERE E.EPNO = EP.EPNO 
-                AND MID = 'member1' ORDER BY EDATE DESC) E)
+                AND MID = 'member1' ORDER BY EDATE DESC, ENO DESC) E)
     WHERE RN BETWEEN 1 AND 5;
 -- 총개수
 SELECT COUNT(*) FROM EX WHERE MID = 'member1';

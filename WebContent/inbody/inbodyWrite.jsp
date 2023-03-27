@@ -42,11 +42,15 @@
 					</td>
 				</tr>
 				<tr>
+				</tr>
+				<tr>
 					<td colspan="3">
 						<input type="submit" value="등록" class="btn">
 						<input type="reset" value="초기화" class="btn">
-						<input type="button" value="목록" onclick="${conPath}/inbodyList.do" class="btn">
+						<input type="button" value="목록" onclick="location.href='${conPath}/inbodyList.do'" class="btn">
 					</td>
+				</tr>
+				<tr>
 				</tr>
 			</table>
 		</form>

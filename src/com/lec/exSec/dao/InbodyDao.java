@@ -41,7 +41,7 @@ public class InbodyDao {
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
 		String sql = "SELECT * FROM INBODY WHERE MID = ? " + 
-				"            ORDER BY IDATE DESC";
+				"            ORDER BY IDATE DESC, INUM DESC";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -133,8 +133,42 @@ public class InbodyDao {
 		}
 		return result;
 	}
+	// 정보수정 View
+	public InbodyDto modifyViewInbody(int inum, String mid) {
+		InbodyDto dto = null;
+		Connection 		  conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT * FROM INBODY WHERE INUM = ? AND MID = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, inum);
+			pstmt.setString(2, mid);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				double iweight = rs.getDouble("iweight");
+				double ifat = rs.getDouble("ifat");
+				double imuscle = rs.getDouble("imuscle");
+				Date idate = rs.getDate("idate");
+				dto = new InbodyDto(inum, mid, iweight, ifat, imuscle, idate);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return dto;
+	}
 	// 2. 정보수정
-	public int modifyInobdy(InbodyDto dto) {
+	public int modifyInbody(InbodyDto dto) {
 		int result = FAIL;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;

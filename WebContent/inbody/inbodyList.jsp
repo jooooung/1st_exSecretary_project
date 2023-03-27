@@ -19,19 +19,27 @@
 			width: 90%;
 			margin: 20px auto;
 		}
-		
+		table .inbody td:first-child{
+			display: none;
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
-			
+			$('tr.inbody').click(function(){
+				/* var inum = document.getElementById('inum').value; */
+				var inum = $(this).children().eq(0).text();
+				if(! isNaN(inum)){
+					location.href = '${conPath }/inbodyContent.do?inum='+inum;
+				}
+			});
 		});
 	</script>
 </head>
 <body>
 	<c:if test="${empty member}">
 		<script>
-			location.href='${conPath}/loginView.do?next=exView.do';
+			location.href='${conPath}/loginView.do?next=inbodyList.do';
 		</script>
 	</c:if>
 	<c:if test="${not empty inbodyWriteResult }">
@@ -52,11 +60,11 @@
   <div id="chart_div"></div>
 		<table>
 			<tr>
-				<th>no</th><th>몸무게(kg)</th><th>체지방률(kg)</th><th>골격근량(kg)</th><th>날짜</th>
+				<th>몸무게(kg)</th><th>체지방률(kg)</th><th>골격근량(kg)</th><th>날짜</th>
 			</tr>
 			<c:forEach var="dto" items="${inbody }">
-				<tr>
-					<td>${dto.inum}</td>
+				<tr class="inbody">
+					<td>${dto.inum }</td>
 					<td>${dto.iweight}kg</td>
 					<td>${dto.ifat}</td>
 					<td>${dto.imuscle}</td>
@@ -66,7 +74,8 @@
 			<tr>
 				<td colspan="5">
 					<input type="button" value="기록 추가" class="btn" onclick="location.href='${conPath}/inbodyWriteView.do'">
-				<td>
+				</td>
+			</tr>
 		</table>
 	</div>
 	<jsp:include page="../main/footer.jsp"/>	

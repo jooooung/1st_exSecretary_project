@@ -15,7 +15,9 @@ import com.lec.exSec.service.ExPartWriteService;
 import com.lec.exSec.service.ExRecordListService;
 import com.lec.exSec.service.ExRecordWriteService;
 import com.lec.exSec.service.ExService;
+import com.lec.exSec.service.InbodyContentService;
 import com.lec.exSec.service.InbodyListService;
+import com.lec.exSec.service.InbodyModifyViewService;
 import com.lec.exSec.service.JoinService;
 import com.lec.exSec.service.LoginService;
 import com.lec.exSec.service.MLogoutService;
@@ -118,7 +120,15 @@ public class FrontController extends HttpServlet {
 				result = 0;
 			}
 			viewPage = "inbodyList.do";
-		}else if(command.equals("/aLoginView.do")) {	// admin 로그인 페이지
+		}else if(command.equals("/inbodyContent.do")) {	// 특정 나의 변화 상세보기
+			service = new InbodyContentService();
+			service.execute(request, response);
+			viewPage = "inbody/inbodyContent.jsp";
+		}else if(command.equals("/inbodyModifyView.do")){
+			service = new InbodyModifyViewService();
+			service.execute(request, response);
+			viewPage = "inbody/inbodyModify.jsp";
+		} else if(command.equals("/aLoginView.do")) {	// admin 로그인 페이지
 			viewPage = "admin/adminLogin.jsp";
 		}else if(command.equals("/aLogin.do")) {	// admin 로그인 처리
 			service = new ALoginService();
