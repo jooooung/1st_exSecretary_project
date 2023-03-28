@@ -20,7 +20,7 @@ import com.lec.exSec.dto.MemberDto;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class ExBoardWriteService implements Service {
+public class ExBoardReplyService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String path = request.getRealPath("exBoardUp");
@@ -48,6 +48,9 @@ public class ExBoardWriteService implements Service {
 				String btitle = mRequest.getParameter("btitle");
 				String bcontent = mRequest.getParameter("bcontent");
 				Timestamp bdate = new Timestamp(System.currentTimeMillis());
+				int bgroup = Integer.parseInt(mRequest.getParameter("bgroup"));
+				int bstep = Integer.parseInt(mRequest.getParameter("bstep"));
+				int bindent = Integer.parseInt(mRequest.getParameter("bindent"));
 				String bip = request.getRemoteAddr();
 				String writer = "";
 				String mname = "";
@@ -68,15 +71,17 @@ public class ExBoardWriteService implements Service {
 					writer = aname;
 				}
 				ExBoardDao exDao = ExBoardDao.getInstance();
-				ExBoardDto exDto = new ExBoardDto(0, mid, aid, btitle, bcontent, bphoto, bdate, 0, 0, 0, 0, bip, writer);
-				int result = exDao.writeExBoard(exDto);
+				ExBoardDto exDto = new ExBoardDto(0, mid, aid, btitle, bcontent, bphoto, bdate, 0, bgroup, bstep, bindent, bip, writer);
+				int result = exDao.reply(exDto);
 				if(result == ExBoardDao.SUCCESS) {
-					request.setAttribute("exBoardResult", "글쓰기 성공");
+					request.setAttribute("exBoardResult", "답글쓰기 성공");
 				}else {
-					request.setAttribute("exBoardError", "글쓰기 실패");
+					request.setAttribute("exBoardError", "답글쓰기 실패");
 				}
+				request.setAttribute("pageNum", mRequest.getParameter("pageNum"));
 			}else {
 				request.setAttribute("exBoardResult", "로그인 해주세요");
+				return;
 			}
 		} catch (IOException e) {
 			System.out.println(e.getMessage());

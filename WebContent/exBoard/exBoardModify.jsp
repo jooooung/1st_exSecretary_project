@@ -28,37 +28,45 @@
 <body>
 	<c:if test="${empty member && empty admin}">
 		<script>
-			location.href='${conPath}/loginView.do?next=exBoardWriteView.do';
+			location.href='${conPath}/loginView.do?next=exBoardModifyView.do';
 		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
-		<form action="exBoardWrite.do" method="post" enctype="multipart/form-data">
+		<form action="exBoardModify.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="pageNum" value="${param.pageNum }">
+			<input type="hidden" name="bnum" value="${exboard.bnum }">
+			<input type="hidden" name="dbPhoto" value="${exboard.bphoto}">
+			<input type="hidden" name="bdate" value="${exboard.bdate}">
 	 		<table>
-			<caption>글쓰기</caption>
+			<caption>${exboard.bnum }번 글 수정</caption>
 			<tr>
 				<th>제목</th>
 				<td>
-					<input type="text" name="btitle" required="required">
+					<input type="text" name="btitle" required="required" value="${exboard.btitle }">
 				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td>
-					<textarea name="bcontent" rows="10"></textarea>
+					<textarea name="bcontent" rows="10">${exboard.bcontent}</textarea>
 				</td>
 			</tr>
 			<tr>
 				<th>사진</th>
 				<td>
-					<input type="file" name="bphoto" onchange="checkSize(this)"><br>
+					<input type="file" name="bphoto" onchange="checkSize(this)" width="30"><br>
+					<c:if test="${not empty exboard.bphoto}">
+				 		기존파일:<a href="${conPath }/exBoardUp/${exboard.bphoto}" target="_blank">${exboard.bphoto}</a>
+				 	</c:if>
+					<br>
 					<span class="small">5MB 미만만 첨부가 가능합니다</span>
 				</td>
 			</tr>
 			<tr></tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="글쓰기" class="btn">
+					<input type="submit" value="수정" class="btn">
 					<input type="reset" value="취소" class="btn">
 					<input type="button" value="목록" class="btn" onclick="location.href='${conPath }/exBoardList.do?pageNum=${param.pageNum }'">
 				</td>

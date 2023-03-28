@@ -300,7 +300,7 @@ public class ExBoardDao {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, null);
 				pstmt.setString(2, null);
-				pstmt.setString(3, "삭제된 글입니다");
+				pstmt.setString(3, "(삭제된 글입니다)");
 				pstmt.setString(4, null);
 				pstmt.setString(5, null);
 				pstmt.setInt(6, 0);
@@ -349,7 +349,7 @@ public class ExBoardDao {
 			Connection        conn  = null;
 			PreparedStatement pstmt = null;
 			String sql = "INSERT INTO EXBOARD " + 
-					"    VALUES (EXBOARD_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+					"    VALUES (EXBOARD_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			try {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(sql);

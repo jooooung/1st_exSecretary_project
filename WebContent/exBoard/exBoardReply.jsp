@@ -26,16 +26,20 @@
 	</script>
 </head>
 <body>
-	<c:if test="${empty member}">
+	<c:if test="${empty member && empty admin}">
 		<script>
-			location.href='${conPath}/loginView.do?next=exBoardWriteView.do';
+			location.href='${conPath}/loginView.do?next=exBoardWriteView.do?bnum=${param.bnum}&pageNum=${param.pageNum}';
 		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
 		<form action="exBoardReply.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="bgroup" value="${originExboard.bgroup}">
+			<input type="hidden" name="bstep" value="${originExboard.bstep}">
+			<input type="hidden" name="bindent" value="${originExboard.bindent}">
+			<input type="hidden" name="pageNum" value="${param.pageNum }">
 	 		<table>
-			<caption>${modifyExboard.btitle } 답글쓰기</caption>
+			<caption>${originExboard.btitle })답글</caption>
 			<tr>
 				<th>제목</th>
 				<td>
@@ -45,7 +49,7 @@
 			<tr>
 				<th>내용</th>
 				<td>
-					<input type="text" name="bcontent" height="50">
+					<textarea name="bcontent" rows="10"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -59,8 +63,8 @@
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="답글쓰기" class="btn">
-					<input type="reset" value="취소" class="btn">
-					<input type="button" value="목록" class="btn" onclick="${conPath}/exBoardList.do">
+					<input type="reset" value="초기화" class="btn">
+					<input type="button" value="목록" class="btn" onclick="location.href='${conPath }/exBoardList.do?pageNum=${param.pageNum }'">
 				</td>
 			</tr>	
 			<tr></tr>

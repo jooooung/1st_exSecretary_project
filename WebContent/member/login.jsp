@@ -21,7 +21,7 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${not empty member}">
+		<c:when test="${not empty member || not empty admin}">
 			<script>
 				location.href="main.do"
 			</script>

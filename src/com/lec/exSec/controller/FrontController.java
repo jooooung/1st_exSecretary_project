@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.exSec.service.ALoginService;
+import com.lec.exSec.service.BCommentService;
 import com.lec.exSec.service.ExBoardContentService;
 import com.lec.exSec.service.ExBoardListService;
+import com.lec.exSec.service.ExBoardReplyService;
 import com.lec.exSec.service.ExBoardReplyViewService;
 import com.lec.exSec.service.ExBoardWriteService;
 import com.lec.exSec.service.ExContentService;
@@ -39,6 +41,9 @@ import com.lec.exSec.service.MemberModifyService;
 import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.PreExRecordWriteService;
 import com.lec.exSec.service.Service;
+import com.lec.exSec.service.exBoardDeleteService;
+import com.lec.exSec.service.exBoardModifyService;
+import com.lec.exSec.service.exBoardModifyViewService;
 import com.lec.exSec.service.ExRecordDeleteService;
 import com.lec.exSec.service.inbodyWriteService;
 import com.lec.exSec.service.PreExService;
@@ -184,6 +189,7 @@ public class FrontController extends HttpServlet {
 		}
 		/* * * * * * * * * * * * admin * * * * * * * * * * * */
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * */
+		
 		 else if(command.equals("/aLoginView.do")) {	// admin 로그인 페이지
 			viewPage = "admin/adminLogin.jsp";
 		}else if(command.equals("/aLogin.do")) {	// admin 로그인 처리
@@ -224,6 +230,10 @@ public class FrontController extends HttpServlet {
 			service = new MAllViewService();
 			service.execute(request, response);
 			viewPage = "admin/mAllView.jsp";
+			
+		/* * * * * * * * * * * * exBoard * * * * * * * * * * * */
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * */
+			
 		}else if(command.equals("/exBoardList.do")) {	// 자유게시판 목록 
 			service = new ExBoardListService();
 			service.execute(request, response);
@@ -234,16 +244,48 @@ public class FrontController extends HttpServlet {
 			viewPage = "exBoard/exBoardContent.jsp";
 		}else if(command.equals("/exBoardWriteView.do")) {	// 글 쓰기
 			viewPage = "exBoard/exBoardWrite.jsp";
+			result = 1;
 		}else if(command.equals("/exBoardWrite.do")) {	// 글 쓰기 저장
-			service = new ExBoardWriteService();
-			service.execute(request, response);
+			if(result == 1) {
+				service = new ExBoardWriteService();
+				service.execute(request, response);
+				result = 0;
+			}
 			viewPage = "exBoardList.do";
 		}else if(command.equals("/exBoardReplyView.do")) {	// 답글 쓰기
 			service = new ExBoardReplyViewService();
 			service.execute(request, response);
 			viewPage = "exBoard/exBoardReply.jsp";
+			result = 1;
+		}else if(command.equals("/exBoardReply.do")) {	// 답글 저장
+			if(result == 1) {
+				service = new ExBoardReplyService();
+				service.execute(request, response);
+				result = 0;
+			}
+			viewPage = "exBoardList.do"; 
+		}else if(command.equals("/exBoardModifyView.do")) {	// 글 수정 페이지
+			service = new exBoardModifyViewService();
+			service.execute(request, response);
+			viewPage = "exBoard/exBoardModify.jsp";
+			result = 1;
+		}else if(command.equals("/exBoardModify.do")) {	// 수정글 저장
+			if(result == 1) {
+				service = new exBoardModifyService();
+				service.execute(request, response);
+				result = 0;
+			}
+			viewPage = "exBoardList.do";
+		}else if(command.equals("/exBoardDelete.do")) {	// 선택 글 삭제
+			service = new exBoardDeleteService();
+			service.execute(request, response);
+			viewPage = "exBoardList.do";
+		}else if(command.equals("/bComment.do")) { // 댓글 달기
+			service = new BCommentService();
+			service.execute(request, response);
+			viewPage = "exBoardContentView.do";
 		}
-			
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}

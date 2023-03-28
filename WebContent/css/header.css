@@ -17,7 +17,8 @@ header a {
 header li { list-style: none;}
 header .gnb{
 	width: 100%;
-	background-color: black;
+	background-color: rgba( 0, 0, 0);
+	/* background-color: black; */
 }
 header .gnb ul{
 	overflow: hidden;

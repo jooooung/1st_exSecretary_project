@@ -47,10 +47,11 @@ public class BcommentDao {
 			if(rs.next()) {
 				int cnum = rs.getInt("cnum");
 				String mid = rs.getString("mid");
+				String aid = rs.getString("aid");
 				String ccontent = rs.getString("ccontent");
 				Timestamp cdate = rs.getTimestamp("cdate");
 				String cip = rs.getString("cip");
-				dto = new BcommentDto(cnum, bnum, mid, ccontent, cdate, cip);
+				dto = new BcommentDto(cnum, bnum, mid, aid, ccontent, cdate, cip);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -70,16 +71,17 @@ public class BcommentDao {
 		int result = FAIL;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO BCOMMENT (CNUM, BNUM, MID, CCONTENT, CDATE, CIP)" + 
-				"    VALUES (BCOMMENT_SEQ.NEXTVAL, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO BCOMMENT (CNUM, BNUM, MID, AID, CCONTENT, CDATE, CIP)" + 
+				"    VALUES (BCOMMENT_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getBnum());
 			pstmt.setString(2, dto.getMid());
-			pstmt.setString(3, dto.getCcontent());
-			pstmt.setTimestamp(4, dto.getCdate());
-			pstmt.setString(5, dto.getCip());
+			pstmt.setString(3, dto.getAid());
+			pstmt.setString(4, dto.getCcontent());
+			pstmt.setTimestamp(5, dto.getCdate());
+			pstmt.setString(6, dto.getCip());
 			pstmt.executeUpdate();
 			result = SUCCESS;
 			System.out.println("댓글쓰기 성공");
@@ -101,13 +103,15 @@ public class BcommentDao {
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE BCOMMENT SET CCONTENT = ?, CIP = ?" + 
-				"                WHERE CNUM = ?";
+				"                WHERE CNUM = ? AND (MID = ? OR AID = ?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCcontent());
 			pstmt.setString(2, dto.getCip());
 			pstmt.setInt(3, dto.getCnum());
+			pstmt.setString(4, dto.getMid());
+			pstmt.setString(5, dto.getAid());
 			pstmt.executeUpdate();
 			result = SUCCESS;
 			System.out.println("댓글수정 성공");
@@ -124,15 +128,17 @@ public class BcommentDao {
 		return result;
 	}
 	// 3. 댓글 삭제
-	public int deleteBcomment(int cnum) {
+	public int deleteBcomment(int cnum, String mid, String aid) {
 		int result = FAIL;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
-		String sql = "DELETE FROM BCOMMENT WHERE CNUM = ?";
+		String sql = "DELETE FROM BCOMMENT WHERE CNUM = ? AND (MID = ? OR AID = ?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cnum);
+			pstmt.setString(2, mid);
+			pstmt.setString(3, aid);
 			pstmt.executeUpdate();
 			if(result == SUCCESS) {
 				System.out.println("댓글삭제 성공");

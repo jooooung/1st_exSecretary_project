@@ -84,13 +84,13 @@ UPDATE EXBOARD B SET MID = NULL,
 --------------- BCOMMENT ---------------
 SELECT * FROM BCOMMENT WHERE BNUM = 1;
 -- 1. 댓글 달기
-INSERT INTO BCOMMENT (CNUM, BNUM, MID, CCONTENT, CDATE, CIP)
-    VALUES (BCOMMENT_SEQ.NEXTVAL, '2', 'member3', '대단해요!', SYSDATE, '192.1.3.7');
+INSERT INTO BCOMMENT (CNUM, BNUM, MID, AID, CCONTENT, CDATE, CIP)
+    VALUES (BCOMMENT_SEQ.NEXTVAL, '2', 'member3', null, '대단해요!', SYSDATE, '192.1.3.7');
 -- 2. 댓글 수정
 UPDATE BCOMMENT SET CCONTENT = '수정 댓글', CIP = '192.1.1.5'
-                WHERE CNUM = 1; 
+                WHERE CNUM = 1 AND (MID = 'member3' OR AID = 'admin'); 
 -- 3. 댓글삭제
-DELETE FROM BCOMMENT WHERE CNUM = 2; 
+DELETE FROM BCOMMENT WHERE CNUM = 1 AND (MID = 'member3' OR AID = 'admin'); 
 -- 4. 회원 탈퇴 시 탈퇴 회원 댓글 삭제
 DELETE FROM BCOMMENT WHERE MID = 'member2';
 

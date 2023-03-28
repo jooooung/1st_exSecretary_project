@@ -6,13 +6,14 @@ public class BcommentDto {
 	private int cnum;
 	private int bnum;
 	private String mid;
+	private String aid;
 	private String ccontent;
 	private Timestamp cdate;
 	private String cip;
 	public BcommentDto() {
 		super();
 	}
-	public BcommentDto(int cnum, int bnum, String mid, String ccontent, Timestamp cdate, String cip) {
+	public BcommentDto(int cnum, int bnum, String mid, String aid, String ccontent, Timestamp cdate, String cip) {
 		super();
 		this.cnum = cnum;
 		this.bnum = bnum;
@@ -42,6 +43,12 @@ public class BcommentDto {
 	public String getCcontent() {
 		return ccontent;
 	}
+	public String getAid() {
+		return aid;
+	}
+	public void setAid(String aid) {
+		this.aid = aid;
+	}
 	public void setCcontent(String ccontent) {
 		this.ccontent = ccontent;
 	}
@@ -59,7 +66,8 @@ public class BcommentDto {
 	}
 	@Override
 	public String toString() {
-		return "Bcomment [cnum=" + cnum + ", bnum=" + bnum + ", mid=" + mid + ", ccontent=" + ccontent + ", cdate="
-				+ cdate + ", cip=" + cip + "]";
+		return "BcommentDto [cnum=" + cnum + ", bnum=" + bnum + ", mid=" + mid + ", aid=" + aid + ", ccontent="
+				+ ccontent + ", cdate=" + cdate + ", cip=" + cip + "]";
 	}
+	
 }

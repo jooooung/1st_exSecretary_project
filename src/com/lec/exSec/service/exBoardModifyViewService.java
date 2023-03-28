@@ -4,12 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.exSec.dao.ExBoardDao;
+import com.lec.exSec.dto.ExBoardDto;
 
-public class ExBoardReplyViewService implements Service {
+public class exBoardModifyViewService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int bnum = Integer.parseInt(request.getParameter("bnum"));
 		ExBoardDao ebDao = ExBoardDao.getInstance();
-		request.setAttribute("originExboard", ebDao.modifyViewExBoard_replyViewExBoard(bnum));
+		ExBoardDto ebDto = ebDao.modifyViewExBoard_replyViewExBoard(bnum);
+		request.setAttribute("exboard", ebDto);
 	}
 }

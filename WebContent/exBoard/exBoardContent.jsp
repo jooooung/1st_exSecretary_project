@@ -30,9 +30,14 @@
 	</script>
 </head>
 <body>
-	<c:if test="${empty member}">
+	<c:if test="${empty member && empty admin}">
 		<script>
 			location.href='${conPath}/loginView.do?next=exBoardContentView.do';
+		</script>
+	</c:if>
+	<c:if test="${not empty exBoardResult }">
+		<script>
+		alert('${exBoardResult}');
 		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>
@@ -43,7 +48,7 @@
  			</tr>
  			<tr></tr>
  			<tr>
- 				<td class="right">${exBoard.writer }&nbsp; &nbsp;</td>
+ 				<td class="right"><b>${exBoard.writer }&nbsp; &nbsp;</b></td>
  			</tr>
  			<tr></tr>
  			<tr>
@@ -58,8 +63,8 @@
  			</tr>
  			<tr></tr>
  			<tr>
- 				<td class="right">작성일 : 
-					<fmt:formatDate value="${exBoard.bdate}" pattern="YY.MM.DD HH:mm" type="both"/>
+ 				<td class="right">
+					<fmt:formatDate value="${exBoard.bdate}" pattern="YY.MM.dd HH:mm" type="both"/>
 				</td>
  			</tr>
  			<tr>
@@ -79,14 +84,18 @@
 					<button class="btn" onclick="location.href='${conPath }/exBoardDelete.do?bnum=${exBoard.bnum}&pageNum=${param.pageNum }'">
 						삭제
 					</button>
+				</c:if>
+				<c:if test="${member.mid eq exBoard.mid || admin.aid eq exBoard.mid }">
 					<button class="btn" onclick="location.href='${conPath }/exBoardModifyView.do?bnum=${exBoard.bnum}&pageNum=${param.pageNum }'">
 						수정
-					</button>	
-				</c:if>
+					</button>
+				</c:if>	
 				</td>
 			</tr>
  		</table>
- 		<form action="exBoardReply.do">
+ 		<form action="bComment.do">
+ 			<input type="hidden" name="bnum" value="${exBoard.bnum }">
+ 			<input type="hidden" name="pageNum" value="${param.pageNum}">
  			<table>
  				<tr>
  					<td class="left"><b>${member.mid } ${admin.aid }</b></td>
@@ -114,8 +123,17 @@
 					<td class="left">
 						${comment.ccontent }<br>
 						<span class="small">
-							<fmt:formatDate value="${comment.cdate}" pattern="YY.MM.DD HH:mm" type="both"/>
+							<fmt:formatDate value="${comment.cdate}" pattern="YY.MM.dd HH:mm" type="both"/>
 						</span>
+						<div class="right small">
+								<a>댓글달기</a>
+		 					<c:if test="${member.mid eq comment.mid || admin.aid eq comment.mid}">
+		 						<a>수정</a>
+		 					</c:if>
+		 					<c:if test="${member.mid eq comment.mid || not empty admin}">
+		 						<a>삭제</a>
+		 					</c:if>
+						</div>
 					</td>
 	 			</tr>
 	 		</table>
