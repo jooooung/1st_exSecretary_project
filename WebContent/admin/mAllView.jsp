@@ -17,9 +17,6 @@
 			margin:0 auto;
 			border-radius: 10px;
 		}
-		.paging, .paging a{
-			color: white;
-		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
@@ -112,36 +109,30 @@
 	  		</c:forEach>
 	  	</tr>
   </table>
-  <p class="paging">
-  	<a href="${conPath }/mAllView.do?pageNum=1">	<!-- 맨 앞으로( << ) -->
-  		&lt;&lt;
-  	</a>
-  	&nbsp; &nbsp; 
-  	<c:if test="${BLOCKSIZE < startPage }">	<!-- 이전 페이지 있을 경우 ( < ) -->
-  		<a href="${conPath }/mAllView.do?pageNum=${startPage-1}">&lt;</a>
-  	</c:if>
-  	<c:if test="${BLOCKSIZE >= startPage }">	<!-- 이전 페이지 없을 겨우( < ) -->
-  		&lt;
-  	</c:if>
-  	&nbsp; &nbsp; 
-  	<c:forEach var="i" begin="${startPage }" end="${endPage }"><!-- 페이지 숫자 -->
-  		<c:if test="${i eq pageNum }"><!-- 현재 페이지 -->
-  			<b>[${i }]</b>
-  		</c:if>
-  		<c:if test="${i != pageNum }"><!-- 다른 페이지 -->
-  			<a href="${conPath }/mAllView.do?pageNum=${i}">[${i }]</a>
-  		</c:if>
-  	</c:forEach>
-  	&nbsp; &nbsp; 
-  	<c:if test="${endPage < pageCnt }"><!-- 다음페이지( > ) -->
-	  	<a href="${conPath }/mAllView.do?pageNum=${endPage+1}">&gt;</a>
-  	</c:if>
-  	<c:if test="${endPage eq pageCnt }">
-	  	&gt;
-  	</c:if>
-  	&nbsp; &nbsp; 
-  	<a href="${conPath }/mAllView.do?pageNum=${pageCnt}">&gt;&gt;</a> <!-- 끝 페이지 (>>) -->
-  </p>
+ <p class="paging">
+			<a href="${conPath }/mAllView.do?pageNum=1">&lt;&lt;</a>	<!-- 첫 페이지로 -->
+			&nbsp; &nbsp; &nbsp;
+			<c:if test="${BLOCKSIZE < startPage}">
+				<a href="${conPath }/mAllView.do?pageNum=${startPage-1}">&lt;</a>	<!-- 이전 블럭-->
+			</c:if>
+			<c:if test="${BLOCKSIZE >= startPstartPageage }">	<!-- 이전 블럭 없을 시  미출력--></c:if>
+			&nbsp; &nbsp; &nbsp;
+			<c:forEach var="i" begin="${startPage }" end="${endPage }">	<!-- 현재페이지 -->
+				<c:if test="${i eq pageNum }">
+					[ <b> ${i } </b> ]
+				</c:if>
+				<c:if test="${i != pageNum }">
+					[ <a href="${conPath }/mAllView.do?pageNum=${i }"> ${i } </a> ]	<!-- 다른페이지 -->
+				</c:if>
+			</c:forEach>
+			&nbsp; &nbsp; &nbsp;
+			<c:if test="${endPage < pageCnt }">
+				<a href="${conPath }/mAllView.do?pageNum=${endPage+1 }">&gt;</a>	<!-- 다음블럭 -->
+			</c:if>
+			<c:if test="${endPage == pageCnt }">	<!-- 다음블럭 없을 시  미출력--></c:if>
+			&nbsp; &nbsp; &nbsp;
+			<a href="${conPath }/mAllView.do?pageNum=${pageCnt }">&gt;&gt;</a>	<!-- 마지막 페이지로 -->
+		</p>
 	</div>
 	<jsp:include page="../main/footer.jsp"/>
 </body>

@@ -32,20 +32,20 @@ public class BcommentDao {
 		}
 		return conn;
 	}
-	// 댓글 가져오기
-	public BcommentDto getBcomment(int cnum) {
+	// 특정글의 댓글 목록 가져오기
+	public BcommentDto getBcomment(int bnum) {
 		BcommentDto dto = null;
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
-		String sql = "SELECT * FROM BCOMMENT WHERE CNUM = ?";
+		String sql = "SELECT * FROM BCOMMENT WHERE BNUM = ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, cnum);
+			pstmt.setInt(1, bnum);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				int bnum = rs.getInt("bnum");
+				int cnum = rs.getInt("cnum");
 				String mid = rs.getString("mid");
 				String ccontent = rs.getString("ccontent");
 				Timestamp cdate = rs.getTimestamp("cdate");

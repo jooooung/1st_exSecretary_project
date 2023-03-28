@@ -35,8 +35,8 @@
 		</div>
 		<div class="lnb">
 			<ul>
-				<li><a href="loginView.do?">자유게시판</a></li>
-				<li><a href="loginView.do">나의 변화</a></li>
+				<li><a href="loginView.do?next=exBoardList.do">자유게시판</a></li>
+				<li><a href="loginView.do?next=inbodyList.do">나의 변화</a></li>
 				<li><a href="loginView.do?next=exRecordList.do">운동기록</a></li>
 				<li><a href="loginView.do?next=exView.do">운동하기</a></li>
 			</ul>
@@ -46,7 +46,7 @@
 		<div class="gnb">
 			<ul>
 				<li><a href="${conPath }/logout.do">로그아웃</a></li>
-				<li><a>${member.mname }님 오늘도 즐거운 운동 되세요.</a></li>
+				<li><span>${member.mname }님 오늘도 즐거운 운동 되세요.</span></li>
 			</ul>
 		</div>
 		<div class="logo">
@@ -57,9 +57,9 @@
 		<div class="lnb">
 			<ul>
 				<li><a href="memberView.do">마이페이지</a></li>
-				<li><a href="#">자유게시판</a></li>
+				<li><a href="exBoardList.do?">자유게시판</a></li>
 				<li><a href="inbodyList.do">나의 변화</a></li>
-				<li><a href="exRecordList.do?pageNum=1">운동기록</a></li>
+				<li><a href="exRecordList.do">운동기록</a></li>
 				<li><a href="exView.do">운동하기</a></li>
 			</ul>
 		</div>
@@ -68,7 +68,7 @@
 		<div class="gnb">
 			<ul>
 				<li><a href="${conPath }/logout.do">로그아웃</a></li>
-				<li><a>환영합니다 ${admin.aname }님</a></li>
+				<li><span>환영합니다 ${admin.aname }님</span></li>
 			</ul>
 		</div>
 		<div class="logo">
@@ -79,8 +79,8 @@
 		<div class="lnb">
 			<ul>
 				<li><a href="exPartList.do">운동관리</a></li>
-				<li><a href="#">자유게시판</a></li>
-				<li><a href="mAllView.do?pageNum=${pageNum }">회원목록</a></li>
+				<li><a href="exBoardList.do">자유게시판</a></li>
+				<li><a href="mAllView.do">회원목록</a></li>
 			</ul>
 		</div>
 	</c:if>

@@ -59,7 +59,10 @@ header .lnb ul li{
 	margin-left: 15px;
 	margin-right: 15px;
 }
-
+header span{
+	color: white;
+	font-weight: bold;
+}
 #main{
 	width: 500px;
 	height: 1000px

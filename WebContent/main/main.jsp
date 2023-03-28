@@ -26,6 +26,11 @@
 			history.back();
 		</script>
 	</c:if>
+	<c:if test="${not empty withdrawalResult}">
+		<script>
+			alert('${withdrawalResult}');
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
  		

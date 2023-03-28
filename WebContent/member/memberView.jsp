@@ -153,7 +153,7 @@
 					<tr>
 						<td colspan="3">
 							<input type="submit" value="정보수정" class="btn">
-							<input type="button" value="회원탈퇴" class="btn" onclick="location.href='${conPath}/withdrawal.do'">
+							<input type="button" value="회원탈퇴" class="btn" onclick="location.href='${conPath}/memberWithDrawal.do'">
 						</td>
 					</tr>
 			</table>

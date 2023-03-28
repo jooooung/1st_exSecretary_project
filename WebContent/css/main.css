@@ -8,6 +8,10 @@
     	color: black;
     	text-decoration: none;
     }
+    a:hover{
+    	text-decoration: underline;
+    	font-weight: bold;
+    }
 		#content{
 			width: 100%;
 			height: auto;
@@ -18,17 +22,32 @@
 			background-repeat: no-repeat;
 			text-align: center;
 		}
+		#content .left {
+			text-align: left;
+		}
+		#content .right {
+			text-align: right;
+		}
+		#content .small {
+			opacity: 0.7;
+			font-size: 0.8em;
+		}
+		#content .page-title{
+			margin:20px auto;
+			color: white;
+		}
 		#content form{
 			background-color: white;
-			width: 700px;
+			width: 90%;
 			height: auto;
-			margin:20px auto;
+			margin:0 auto;
 			border-radius: 10px;
 		}
 		#content table {
+			background-color: white;	
 			width: 90%;
 			margin: 0 auto;
-			padding-bottom: 10px;
+			padding: 10px;
 		}
 		#content table caption{
 			font-size: 2em;
@@ -56,9 +75,13 @@
 		#content input.mgender{
 			width: 100px;
 			height: 20px;
-			
 		}
-				
+		#content textarea{
+			width: 100%;
+			padding: 10px;
+			font-size: 15px;
+			font-weight: bold;
+		}
 		.btn{
 			background-color: #cfcfda;
 			color: white;
@@ -72,6 +95,8 @@
 			border: 0;
 			border-bottom: 2px solid #cfcfda;
 		}
-		
+		.paging, .paging a{
+			color: white;
+		}
 		
 		

@@ -82,7 +82,7 @@ UPDATE EXBOARD B SET MID = NULL,
                WHERE MID = 'member1';
 
 --------------- BCOMMENT ---------------
-SELECT * FROM BCOMMENT;
+SELECT * FROM BCOMMENT WHERE BNUM = 1;
 -- 1. 댓글 달기
 INSERT INTO BCOMMENT (CNUM, BNUM, MID, CCONTENT, CDATE, CIP)
     VALUES (BCOMMENT_SEQ.NEXTVAL, '2', 'member3', '대단해요!', SYSDATE, '192.1.3.7');

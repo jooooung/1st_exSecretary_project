@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.exSec.service.ALoginService;
+import com.lec.exSec.service.ExBoardContentService;
+import com.lec.exSec.service.ExBoardListService;
+import com.lec.exSec.service.ExBoardReplyViewService;
+import com.lec.exSec.service.ExBoardWriteService;
 import com.lec.exSec.service.ExContentService;
 import com.lec.exSec.service.ExPartDeleteService;
 import com.lec.exSec.service.ExPartListService;
@@ -30,6 +34,7 @@ import com.lec.exSec.service.JoinService;
 import com.lec.exSec.service.LoginService;
 import com.lec.exSec.service.MAllViewService;
 import com.lec.exSec.service.MLogoutService;
+import com.lec.exSec.service.MWithDrawalService;
 import com.lec.exSec.service.MemberModifyService;
 import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.PreExRecordWriteService;
@@ -89,6 +94,10 @@ public class FrontController extends HttpServlet {
 			viewPage = "memberView.do"; 
 		}else if(command.equals("/logout.do")) {	// 로그아웃
 			service = new MLogoutService();
+			service.execute(request, response);
+			viewPage = "main.do";
+		}else if(command.equals("/memberWithDrawal.do")) {
+			service = new MWithDrawalService();
 			service.execute(request, response);
 			viewPage = "main.do";
 		/* * * * * * * * * * * * member-운동하기 * * * * * * * * * * * */	
@@ -215,6 +224,24 @@ public class FrontController extends HttpServlet {
 			service = new MAllViewService();
 			service.execute(request, response);
 			viewPage = "admin/mAllView.jsp";
+		}else if(command.equals("/exBoardList.do")) {	// 자유게시판 목록 
+			service = new ExBoardListService();
+			service.execute(request, response);
+			viewPage = "exBoard/exBoardList.jsp";
+		}else if(command.equals("/exBoardContentView.do")) {	// 글 상세보기
+			service = new ExBoardContentService();
+			service.execute(request, response);
+			viewPage = "exBoard/exBoardContent.jsp";
+		}else if(command.equals("/exBoardWriteView.do")) {	// 글 쓰기
+			viewPage = "exBoard/exBoardWrite.jsp";
+		}else if(command.equals("/exBoardWrite.do")) {	// 글 쓰기 저장
+			service = new ExBoardWriteService();
+			service.execute(request, response);
+			viewPage = "exBoardList.do";
+		}else if(command.equals("/exBoardReplyView.do")) {	// 답글 쓰기
+			service = new ExBoardReplyViewService();
+			service.execute(request, response);
+			viewPage = "exBoard/exBoardReply.jsp";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
