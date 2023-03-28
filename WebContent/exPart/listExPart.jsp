@@ -12,19 +12,26 @@
 	<style>
 		table{
 			background-color: white;
-			width: 700px;
 			height: auto;
-			margin:0 auto;
 			border-radius: 10px;
 		}
 		.paging, .paging a{
 			color: white;
 		}
+		table .expart:hover{
+			background-color: #cfcfda;
+			cursor: pointer;
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
-			
+			$('tr.expart').click(function(){
+				var epno = $(this).children().eq(0).text();
+				if(! isNaN(epno)){
+					location.href = '${conPath }/exPartModifyView.do?epno='+epno+'&pageNum=${pageNum}';
+				}
+			});
 		});
 	</script>
 </head>
@@ -46,6 +53,28 @@
 			history.back();
 		</script>
 	</c:if>
+	<c:if test="${not empty expartModifyResult }">
+		<script>
+			alert('${expartModifyResult}');
+		</script>
+	</c:if>
+	<c:if test="${not empty expartModifyError }">
+		<script>
+			alert('${expartModifyError}');
+			history.back();
+		</script>
+	</c:if>
+	<c:if test="${not empty deleteExPartResult }">
+		<script>
+			alert('${deleteExPartResult}');
+		</script>
+	</c:if>
+	<c:if test="${not empty deleteExPartError}">
+		<script>
+			alert('${deleteExPartError}');
+			history.back();
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
  		<table>
@@ -53,12 +82,17 @@
  				<th>운동번호</th><th>부위</th><th>운동명</th>
  			</tr>
 			<c:forEach var="exPartList" items="${exPartList }">
- 			<tr>
+ 			<tr class="expart">
 				<td>${exPartList.epno }</td>
 				<td>${exPartList.eppart }</td>
 				<td>${exPartList.ename }</td>
  			</tr>
 			</c:forEach>
+ 			<tr>
+ 				<td colspan="3">
+ 					<button class="btn" onclick="location.href='exPartWriteView.do'">운동추가</button>
+ 				</td>
+ 			</tr>
  		</table>
 	<div class="paging">
 	  	<c:if test="${startPage > BLOCKSIZE }">

@@ -1,6 +1,7 @@
 package com.lec.exSec.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.lec.exSec.dto.AdminDto;
+import com.lec.exSec.dto.ExDto;
 import com.lec.exSec.dto.ExPartDto;
 
 public class ExPartDao {
@@ -62,7 +65,36 @@ public class ExPartDao {
 		}
 		return allEx;
 	}
-	
+	// 상세보기
+	public ExPartDto contentExPart(int epno) {
+		ExPartDto dto = null;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT * FROM EXPART WHERE EPNO = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, epno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String eppart = rs.getString("eppart");
+				String ename = rs.getString("ename");
+				dto = new ExPartDto(epno, eppart, ename);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} 
+		}
+		return dto;
+	}
 	// 1. 새 운동 등록
 	public int writeExPart(ExPartDto dto) {
 		int result = FAIL;
@@ -151,7 +183,7 @@ public class ExPartDao {
 		ResultSet         rs    = null;
 		String sql = "SELECT * FROM " + 
 				"    (SELECT ROWNUM RN, EP.* FROM" + 
-				"        (SELECT * FROM EXPART ORDER BY EPPART) EP)" + 
+				"        (SELECT * FROM EXPART ORDER BY EPPART, EPNO) EP)" + 
 				"    WHERE RN BETWEEN ? AND ?";
 		try {
 			conn = getConnection();

@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lec.exSec.service.ALoginService;
 import com.lec.exSec.service.ExContentService;
+import com.lec.exSec.service.ExPartDeleteService;
 import com.lec.exSec.service.ExPartListService;
+import com.lec.exSec.service.ExPartModifyService;
+import com.lec.exSec.service.ExPartModifyViewService;
 import com.lec.exSec.service.ExPartWriteService;
 import com.lec.exSec.service.ExRecordListService;
 import com.lec.exSec.service.ExRecordModifyService;
@@ -25,12 +28,13 @@ import com.lec.exSec.service.InbodyModifyService;
 import com.lec.exSec.service.InbodyModifyViewService;
 import com.lec.exSec.service.JoinService;
 import com.lec.exSec.service.LoginService;
+import com.lec.exSec.service.MAllViewService;
 import com.lec.exSec.service.MLogoutService;
 import com.lec.exSec.service.MemberModifyService;
 import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.PreExRecordWriteService;
 import com.lec.exSec.service.Service;
-import com.lec.exSec.service.exRecordDeleteService;
+import com.lec.exSec.service.ExRecordDeleteService;
 import com.lec.exSec.service.inbodyWriteService;
 import com.lec.exSec.service.PreExService;
 
@@ -51,8 +55,10 @@ public class FrontController extends HttpServlet {
 		String command = uri.substring(conPath.length());
 		String viewPage = null;
 		Service service = null;
+		
 		/* * * * * * * * * * * * member * * * * * * * * * * * */
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * */
+		
 		if(command.equals("/main.do")) {	// 메인페이지
 			viewPage = "main/main.jsp";
 		}else if(command.equals("/loginView.do")) {	// member 로그인 페이지
@@ -111,9 +117,13 @@ public class FrontController extends HttpServlet {
 			service = new ExRecordModifyViewService();
 			service.execute(request, response);
 			viewPage = "ex/exRecordMoidfy.jsp";
+			result = 1;
 		}else if(command.equals("/exRecordModify.do")) {		// 특정 운동기록 수정 저장 
-			service = new ExRecordModifyService();
-			service.execute(request, response);
+			if(result == 1) {
+				service = new ExRecordModifyService();
+				service.execute(request, response);
+				result = 0;
+			}
 			viewPage = "exContent.do";
 		}else if(command.equals("/exRecordWriteView.do")) {		// 운동기록 등록페이지
 			service = new PreExRecordWriteService();
@@ -128,7 +138,7 @@ public class FrontController extends HttpServlet {
 			}
 			viewPage = "exRecordList.do";
 		}else if(command.equals("/exRecordDelete.do")){	// 특정 운동기록 삭제
-			service = new exRecordDeleteService();
+			service = new ExRecordDeleteService();
 			service.execute(request, response);
 			viewPage = "exRecordList.do";
 			/* * * * * * * * * * * * member-나의 변화 * * * * * * * * * * * */
@@ -162,7 +172,10 @@ public class FrontController extends HttpServlet {
 			service = new InbodyDeleteService();
 			service.execute(request, response);
 			viewPage = "inbodyList.do";
-		}else if(command.equals("/aLoginView.do")) {	// admin 로그인 페이지
+		}
+		/* * * * * * * * * * * * admin * * * * * * * * * * * */
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * */
+		 else if(command.equals("/aLoginView.do")) {	// admin 로그인 페이지
 			viewPage = "admin/adminLogin.jsp";
 		}else if(command.equals("/aLogin.do")) {	// admin 로그인 처리
 			service = new ALoginService();
@@ -182,6 +195,26 @@ public class FrontController extends HttpServlet {
 				result = 0;
 			}
 			viewPage = "exPartList.do";
+		}else if(command.equals("/exPartModifyView.do")) {	// 운동 수정 페이지
+			service = new ExPartModifyViewService();
+			service.execute(request, response);
+			viewPage = "exPart/exPartModify.jsp";
+			result = 1;
+		}else if(command.equals("/exPartModify.do")) {	// 운동 수정 저장
+			if(result == 1) {
+				service = new ExPartModifyService();
+				service.execute(request, response);
+				result = 0;
+			}
+			viewPage = "exPartList.do";
+		}else if(command.equals("/exPartDelete.do")) {	// 운동 삭제
+			service = new ExPartDeleteService();
+			service.execute(request, response);
+			viewPage = "exPartList.do";
+		}else if(command.equals("/mAllView.do")) {	// 회원 목록
+			service = new MAllViewService();
+			service.execute(request, response);
+			viewPage = "admin/mAllView.jsp";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

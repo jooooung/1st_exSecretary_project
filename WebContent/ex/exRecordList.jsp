@@ -37,7 +37,7 @@
 			$('tr.ex').click(function(){
 				var eno = $(this).children().eq(0).text();
 				if(! isNaN(eno)){
-					location.href = '${conPath }/exContent.do?eno='+eno;
+					location.href = '${conPath }/exContent.do?eno='+eno+'&pageNum=${pageNum}';
 				}
 			});
 		});
@@ -74,12 +74,6 @@
 	<c:if test="${not empty exRecordDeleteResult }">
 		<script>
 			alert('${exRecordDeleteResult}');
-		</script>
-	</c:if>
-	<c:if test="${not empty exRecordDeleteError }">
-		<script>
-			alert('${exRecordDeleteError}');
-			history.back();
 		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>

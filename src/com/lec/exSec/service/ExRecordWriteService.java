@@ -24,14 +24,14 @@ public class ExRecordWriteService implements Service {
 		int eset = Integer.parseInt(request.getParameter("eset"));
 		int ecount = Integer.parseInt(request.getParameter("ecount"));
 		String ehourStr = request.getParameter("ehour");
-		if(ehourStr == "00") ehourStr = null;
+		if(ehourStr == "") ehourStr = "00";
 		int ehour = Integer.parseInt(ehourStr);
 		String eminStr = request.getParameter("emin");
-		if(eminStr == "00" && ehourStr == "00") ehourStr = null;
+		if(eminStr == "") eminStr = "00";
 		int emin = Integer.parseInt(eminStr);
 		String esecStr = request.getParameter("esec");
-		if(esecStr == "00") ehourStr = null;
-		int esec = Integer.parseInt(ehourStr);
+		if(esecStr == "") esecStr = "00";
+		int esec = Integer.parseInt(esecStr);
 		Date edate = new Date(System.currentTimeMillis());
 		String ename = request.getParameter("ename");
 		ExDao eDao = ExDao.getInstance();

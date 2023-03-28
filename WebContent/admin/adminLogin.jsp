@@ -31,7 +31,7 @@
 				<tr>
 					<td>
 						<input type="text" name="aid" id="aid" class="aid" value="${aid }"
-										placeholder="아이디를 입력해주세요" required="required">
+										placeholder="아이디를 입력해주세요" required="required" autofocus="autofocus">
 					</td>
 				</tr>
 				<tr>

@@ -115,12 +115,15 @@ CREATE SEQUENCE BCOMMENT_SEQ
 ------ DUMMY DATA --------
     -- MEMBER
 INSERT INTO MEMBER 
-    VALUES ('member1', 'member1', '김수호', null, null, null, 'm', null, sysdate);
+    VALUES ('member1', 'member1', '김수호', null, '010-2836-2273', 'member1@google.com', 'm', null, sysdate);
 INSERT INTO MEMBER 
-    VALUES ('member2', 'member2', '박지우', null, '010-2501-2273', 'member2@naver.com', 'f', '1993-04-11', sysdate);
+    VALUES ('member2', 'member2', '박지우', null, '010-1175-3345', 'member2@naver.com', 'f', '1993-04-11', sysdate);
 INSERT INTO MEMBER 
-    VALUES ('member3', 'member3', '최수영', null, null, null, 'm', null, sysdate);
-    
+    VALUES ('member3', 'member3', '최수영', null, '010-1944-2235', 'member3@google.com', 'm', '1990-07-21', sysdate);
+INSERT INTO MEMBER 
+    VALUES ('member4', 'member4', '홍길동', null, '010-0266-4451', 'member4@naver.com', 'm', '2000-11-30', sysdate);
+INSERT INTO MEMBER 
+    VALUES ('member4', 'member5', '김수영', null, '010-1997-3396', 'member5@naver.com', 'f', null, sysdate);
     -- ADMIN
 INSERT INTO ADMIN VALUES ('admin', 'admin', '관리자');
 

@@ -76,10 +76,10 @@
 					<button onclick="location.href='${conPath}/exRecordModifyView.do?eno='+${exContent.eno }" class="btn">
 						운동기록 수정
 					</button>
-					<button onclick="location.href='${conPath}/exRecordDelete.do?eno='+${exContent.eno}" class="btn">
+					<button onclick="location.href='${conPath}/exRecordDelete.do?eno='+${exContent.eno}+'&pageNum='+${param.pageNum}" class="btn">
 						운동기록 삭제
 					</button>
-					<button onclick="location.href='${conPath}/exRecordList.do?pageNum='+${pageNum}" class="btn">
+					<button onclick="location.href='${conPath}/exRecordList.do?pageNum='+${param.pageNum}" class="btn">
 						운동기록 목록
 					</button>
 				</td>

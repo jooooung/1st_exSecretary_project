@@ -7,10 +7,14 @@ import javax.servlet.http.HttpSession;
 import com.lec.exSec.dao.ExDao;
 import com.lec.exSec.dto.MemberDto;
 
-public class exRecordDeleteService implements Service {
+public class ExRecordDeleteService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		int eno = Integer.parseInt(request.getParameter("eno"));
+		String enoStr = request.getParameter("eno");
+		if(enoStr == null) {
+			enoStr = "0";
+		}
+		int eno = Integer.parseInt(enoStr);
 		HttpSession session = request.getSession();
 		MemberDto member = (MemberDto) session.getAttribute("member");
 		String mid = "";
@@ -19,10 +23,7 @@ public class exRecordDeleteService implements Service {
 		}
 		ExDao eDao = ExDao.getInstance();
 		int result = eDao.deleteExRecord(eno, mid);
-		if(result == ExDao.SUCCESS) {
-			request.setAttribute("exRecordDeleteResult", "운동기록 삭제 성공");
-		}else {
-			request.setAttribute("exRecordDeleteError", "운동기록 삭제 실패");
-		}
+		String exRecordDeleteResult = result == ExDao.SUCCESS? "운동기록 삭제 성공" : "운동기록 삭제 실패";
+		request.setAttribute("exRecordDeleteResult", exRecordDeleteResult);
 	}
 }

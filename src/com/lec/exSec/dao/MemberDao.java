@@ -26,7 +26,7 @@ public class MemberDao {
 	public static MemberDao getInstance() {
 		return instance;
 	}
-	private MemberDao() {}
+	public MemberDao() {}
 	private Connection getConnection() throws SQLException {
 		Connection conn = null;
 		try {
