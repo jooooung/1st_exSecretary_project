@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -33,8 +34,8 @@ public class BcommentDao {
 		return conn;
 	}
 	// 특정글의 댓글 목록 가져오기
-	public BcommentDto getBcomment(int bnum) {
-		BcommentDto dto = null;
+	public ArrayList<BcommentDto> getBcomment(int bnum) {
+		ArrayList<BcommentDto> dtos = new ArrayList<BcommentDto>(); 
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
@@ -44,8 +45,42 @@ public class BcommentDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bnum);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				int cnum = rs.getInt("cnum");
+				String mid = rs.getString("mid");
+				String aid = rs.getString("aid");
+				String ccontent = rs.getString("ccontent");
+				Timestamp cdate = rs.getTimestamp("cdate");
+				String cip = rs.getString("cip");
+				dtos.add(new BcommentDto(cnum, bnum, mid, aid, ccontent, cdate, cip));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} 
+		}
+		return dtos;
+	}
+	// 특정 글의 특정 댓글 가져오기
+	public BcommentDto getBcommentOne (int bnum, int cnum) {
+		BcommentDto dto = null;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT * FROM BCOMMENT WHERE BNUM = ? AND CNUM = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bnum);
+			pstmt.setInt(2, cnum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
 				String mid = rs.getString("mid");
 				String aid = rs.getString("aid");
 				String ccontent = rs.getString("ccontent");
@@ -105,7 +140,7 @@ public class BcommentDao {
 		String sql = "UPDATE BCOMMENT SET CCONTENT = ?, CIP = ?" + 
 				"                WHERE CNUM = ? AND (MID = ? OR AID = ?)";
 		try {
-			conn = getConnection();
+			conn = getConnection();	
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCcontent());
 			pstmt.setString(2, dto.getCip());

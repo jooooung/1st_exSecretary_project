@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.lec.exSec.dao.ExBoardDao;
 import com.lec.exSec.dto.ExBoardDto;
 
-public class exBoardModifyViewService implements Service {
+public class ExBoardModifyViewService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int bnum = Integer.parseInt(request.getParameter("bnum"));

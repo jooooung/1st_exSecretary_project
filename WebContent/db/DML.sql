@@ -82,6 +82,9 @@ UPDATE EXBOARD B SET MID = NULL,
                WHERE MID = 'member1';
 
 --------------- BCOMMENT ---------------
+-- 특정 글의 특정 댓글 가져오기
+SELECT * FROM BCOMMENT WHERE BNUM = 1 AND CNUM = 11;
+-- 특정글의 댓글 목록 가져오기
 SELECT * FROM BCOMMENT WHERE BNUM = 1;
 -- 1. 댓글 달기
 INSERT INTO BCOMMENT (CNUM, BNUM, MID, AID, CCONTENT, CDATE, CIP)

@@ -20,7 +20,7 @@ import com.lec.exSec.dto.MemberDto;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class exBoardModifyService implements Service {
+public class ExBoardModifyService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String path = request.getRealPath("exBoardUp");
@@ -74,7 +74,7 @@ public class exBoardModifyService implements Service {
 				}
 				ExBoardDao exDao = ExBoardDao.getInstance();
 				ExBoardDto exDto = new ExBoardDto(bnum, mid, aid, btitle, bcontent, bphoto, bdate, 0, 0, 0, 0, bip, writer);
-				int result = exDao.writeExBoard(exDto);
+				int result = exDao.modifyExBoard(exDto);
 				if(result == ExBoardDao.SUCCESS) {
 					request.setAttribute("exBoardResult", "글수정 성공");
 				}else {

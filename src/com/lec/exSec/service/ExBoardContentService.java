@@ -1,5 +1,7 @@
 package com.lec.exSec.service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +17,7 @@ public class ExBoardContentService implements Service {
 		ExBoardDao ebDao = ExBoardDao.getInstance();
 		ExBoardDto ebDto = ebDao.contentExBoard(bnum);
 		BcommentDao bDao = BcommentDao.getInstance();
-		BcommentDto bDto = bDao.getBcomment(bnum);
+		ArrayList<BcommentDto> bDto = bDao.getBcomment(bnum);
 		request.setAttribute("exBoard", ebDto);
 		request.setAttribute("comment", bDto);
 	}

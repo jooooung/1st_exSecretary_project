@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.exSec.service.ALoginService;
+import com.lec.exSec.service.BCommentDeleteService;
+import com.lec.exSec.service.BCommentModifyService;
+import com.lec.exSec.service.BCommentModifyViewService;
 import com.lec.exSec.service.BCommentService;
 import com.lec.exSec.service.ExBoardContentService;
 import com.lec.exSec.service.ExBoardListService;
@@ -42,8 +45,8 @@ import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.PreExRecordWriteService;
 import com.lec.exSec.service.Service;
 import com.lec.exSec.service.exBoardDeleteService;
-import com.lec.exSec.service.exBoardModifyService;
-import com.lec.exSec.service.exBoardModifyViewService;
+import com.lec.exSec.service.ExBoardModifyService;
+import com.lec.exSec.service.ExBoardModifyViewService;
 import com.lec.exSec.service.ExRecordDeleteService;
 import com.lec.exSec.service.inbodyWriteService;
 import com.lec.exSec.service.PreExService;
@@ -265,13 +268,13 @@ public class FrontController extends HttpServlet {
 			}
 			viewPage = "exBoardList.do"; 
 		}else if(command.equals("/exBoardModifyView.do")) {	// 글 수정 페이지
-			service = new exBoardModifyViewService();
+			service = new ExBoardModifyViewService();
 			service.execute(request, response);
 			viewPage = "exBoard/exBoardModify.jsp";
 			result = 1;
 		}else if(command.equals("/exBoardModify.do")) {	// 수정글 저장
 			if(result == 1) {
-				service = new exBoardModifyService();
+				service = new ExBoardModifyService();
 				service.execute(request, response);
 				result = 0;
 			}
@@ -282,6 +285,18 @@ public class FrontController extends HttpServlet {
 			viewPage = "exBoardList.do";
 		}else if(command.equals("/bComment.do")) { // 댓글 달기
 			service = new BCommentService();
+			service.execute(request, response);
+			viewPage = "exBoardContentView.do";
+		}else if(command.equals("/bCommentModifyView.do")) { // 댓글 수정
+			service = new BCommentModifyViewService();
+			service.execute(request, response);
+			viewPage = "Bcomment/bCommentModify.jsp";
+		}else if(command.equals("/bCommentModify.do")) { // 수정 댓글 저장
+			service = new BCommentModifyService();
+			service.execute(request, response);
+			viewPage = "exBoardContentView.do";
+		}else if(command.equals("/bCommentDelete.do")) {
+			service = new BCommentDeleteService();
 			service.execute(request, response);
 			viewPage = "exBoardContentView.do";
 		}

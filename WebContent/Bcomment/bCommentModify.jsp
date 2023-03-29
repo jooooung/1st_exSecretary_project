@@ -107,38 +107,56 @@
  				</tr>
  				<tr>
  					<td class="right">
- 						<input type="submit" value="등록" class="btn">
+ 						<input type="submit" value="등록" class="btn"> 
  					</td>
  				</tr>
  			</table>
  		</form>
  		<c:if test="${not empty comment }">
  			<c:forEach var="item" items="${comment }">
-		 		<table>
-		 			<tr>
-		 				<td class="left">
-		 					<b>${item.mid }</b>
-		 				</td>
-		 			</tr>
-		 			<tr>
-						<td class="left">
+		 		<c:if test="${BcommentModify.cnum eq item.cnum }">
+					<form action="bCommentModify.do">
+						<input type="hidden" name="bnum" value="${exBoard.bnum }">
+						<input type="hidden" name="cnum" value="${BcommentModify.cnum}">
+						<input type="hidden" name="cdate" value="${BcommentModify.cdate}">
+			 			<input type="hidden" name="pageNum" value="${param.pageNum}">
+			 			<table>
+			 				<tr><th>댓글 수정</th></tr>
+			 				<tr>
+			 					<td class="left"><b>${member.mid } ${admin.aid }</b></td>
+			 				</tr>
+			 				<tr>
+			 					<td class="left">
+			 						<textarea rows="5" name="ccontent">${BcommentModify.ccontent}</textarea>
+			 					</td>
+			 				</tr>
+			 				<tr>
+			 					<td class="right">
+			 						<input type="submit" value="수정" class="btn"> 
+			 						<input type="button" value="취소" class="btn" 
+			 							onclick="history.back()"> 
+			 					</td>
+			 				</tr>
+			 			</table>
+					</form>
+		 		</c:if>
+		 		<c:if test="${BcommentModify.cnum != item.cnum }">
+			 		<table>
+			 			<tr>
+			 				<td class="left">
+			 					<b>${item.mid }</b>
+			 				</td>
+			 			</tr>
+			 			<tr>
+							<td class="left">
 								${item.ccontent }<br>
-							<span class="small">
-								<fmt:formatDate value="${item.cdate}" pattern="YY.MM.dd HH:mm" type="both"/>
-							</span>
-							<div class="right small">
-			 					<c:if test="${member.mid eq item.mid || admin.aid eq item.mid}">
-			 						<a href="${conPath }/bCommentModifyView.do?bnum=${exBoard.bnum}&cnum=${item.cnum}">
-			 							수정
-			 						</a>
-			 					</c:if>
-			 					<c:if test="${member.mid eq item.mid || not empty admin}">
-			 						<a href="${conPath }/bCommentDelete.do?bnum=${exBoard.bnum}&cnum=${item.cnum}">삭제</a>
-			 					</c:if>
-							</div>
-						</td>
-		 			</tr>
-		 		</table>
+								<span class="small">
+									<fmt:formatDate value="${item.cdate}" pattern="YY.MM.dd HH:mm" type="both"/>
+								</span>
+							</td>
+			 			</tr>
+			 		</table>
+		 		</c:if>
 	 		</c:forEach>
  		</c:if>
 	</div>
