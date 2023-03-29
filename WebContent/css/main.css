@@ -1,6 +1,6 @@
 @charset "UTF-8";
 	html,body {
-        height: 563px;
+        height: 663px;
         padding: 0px;
         margin: 0 auto;
     }
@@ -18,7 +18,7 @@
 			height: auto;
 			min-height: 100%;
 			padding: 30px 0 80px;
-			background-image: url("https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fCVFQyU5QSVCNCVFQiU4RiU5OXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60");
+			background-image: url("../img/back2.png");
 			background-size:  100% 100%;
 			background-repeat: no-repeat;
 			text-align: center;
@@ -45,15 +45,33 @@
 			border-radius: 10px;
 		}
 		#content table {
+			border-collapse: collapse;
 			background-color: white;	
 			width: 90%;
 			margin: 0 auto;
-			padding: 10px;
+		}
+		#content table.board-list{
+			 font-size: 15px;
+ 			 width: 100%;
+		}
+		#content table.board-list tr:hover:not(.title){
+			background-color: #d3d3d3;
+			cursor: pointer;
+		}
+		#content table.board-list tr:first-child th{
+			border-bottom: 1px solid;
+		}
+		#content table.board-list tr th, 
+		#content table.board-list tr td{
+			border-bottom: 1px solid #e7e7e7;
 		}
 		#content table caption{
 			font-size: 2em;
-			color: black;
+			color: white;
 			margin: 50px 0;
+		}
+		#content form caption{
+			color: black;
 		}
 		#content table tr{
 			height: 40px;
@@ -83,6 +101,9 @@
 			font-size: 15px;
 			font-weight: bold;
 		}
+		#main_title{
+			color: white;
+		}
 		.btn{
 			background-color: #cfcfda;
 			color: white;
@@ -94,11 +115,21 @@
 			line-height: 50px;
 			font-size:1.1em;
 			border: 0;
-			border-bottom: 2px solid #cfcfda;
+			border-radius: 30px;
+		}
+		.btn:hover{
+			background-color: grey;
 		}
 		.paging, .paging a{
 			color: white;
 			margin: 20px 0;
 		}
-		
-		
+		table.comment{
+			padding-left: 20px;
+			padding-right: 20px;
+		 	border-bottom: 1px solid #e7e7e7;
+		}
+		#main_title{
+			list-style: none;
+			padding: 30px;
+		}

@@ -37,8 +37,8 @@
 			location.href="aLoginView.do";
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
  		<form action="exPartWrite.do">
  			<table id="exList">
  				<caption>새 운동 등록하기</caption>

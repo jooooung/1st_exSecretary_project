@@ -69,8 +69,8 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<form action="join.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="next" value="${param.next }">
 			<table>
@@ -78,7 +78,7 @@
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" name="mid" id="mid" class="mid""
+						<input type="text" name="mid" id="mid" class="mid"
 										placeholder="아이디를 입력해주세요" required="required">
 						<div id="midConfirmResult"> &nbsp; &nbsp; &nbsp; </div>
 					</td>

@@ -3,7 +3,9 @@ package com.lec.exSec.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lec.exSec.dao.BcommentDao;
 import com.lec.exSec.dao.ExBoardDao;
+import com.lec.exSec.dto.ExBoardDto;
 
 public class ExBoardListService implements Service {
 	@Override

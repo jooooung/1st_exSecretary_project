@@ -22,8 +22,8 @@
 			location.href='${conPath}/loginView.do?next=inbodyModifyView.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<form action="inbodyModify.do" method="get">
 			<table>
 				<caption>inbody 수정</caption>

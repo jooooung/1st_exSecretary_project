@@ -10,7 +10,7 @@
 	<title>Insert title here</title>
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
 	<style>
-		#content form{height: 1100px;}
+		#content form{height: 1000px;}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
@@ -61,8 +61,8 @@
 			</script>
 		</c:when>
 	</c:choose>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<form action="modify.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="dbMpw" value="${member.mpw }">	<!-- 비밀번호 미 변경시 현 비밀번호로 -->
 			<input type="hidden" name="dbMphoto" value="${member.mphoto }">	<!-- 프로필 미 변경시 현 프로필로 -->

@@ -22,8 +22,8 @@
 			location.href='${conPath}/loginView.do?next=inbodyWriteView.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"></jsp:include>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"></jsp:include>
 		<form action="inbodyWrite.do">
 			<table>
 				<caption>inbody 등록</caption>

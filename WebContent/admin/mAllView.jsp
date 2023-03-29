@@ -31,8 +31,8 @@
 			location.href='${conPath}/aLoginView.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp" />
 	<div id="content">
+	<jsp:include page="../main/header.jsp" />
 		<table>
 			<caption style="color: white; font-size:3em;">전체회원보기</caption>
 			<tr>

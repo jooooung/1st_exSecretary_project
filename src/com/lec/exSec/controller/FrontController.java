@@ -44,7 +44,7 @@ import com.lec.exSec.service.MemberModifyService;
 import com.lec.exSec.service.MidConfirmService;
 import com.lec.exSec.service.PreExRecordWriteService;
 import com.lec.exSec.service.Service;
-import com.lec.exSec.service.exBoardDeleteService;
+import com.lec.exSec.service.ExBoardDeleteService;
 import com.lec.exSec.service.ExBoardModifyService;
 import com.lec.exSec.service.ExBoardModifyViewService;
 import com.lec.exSec.service.ExRecordDeleteService;
@@ -280,7 +280,7 @@ public class FrontController extends HttpServlet {
 			}
 			viewPage = "exBoardList.do";
 		}else if(command.equals("/exBoardDelete.do")) {	// 선택 글 삭제
-			service = new exBoardDeleteService();
+			service = new ExBoardDeleteService();
 			service.execute(request, response);
 			viewPage = "exBoardList.do";
 		}else if(command.equals("/bComment.do")) { // 댓글 달기
@@ -295,7 +295,7 @@ public class FrontController extends HttpServlet {
 			service = new BCommentModifyService();
 			service.execute(request, response);
 			viewPage = "exBoardContentView.do";
-		}else if(command.equals("/bCommentDelete.do")) {
+		}else if(command.equals("/bCommentDelete.do")) { // 댓글 삭제
 			service = new BCommentDeleteService();
 			service.execute(request, response);
 			viewPage = "exBoardContentView.do";

@@ -57,7 +57,7 @@
 		<div class="lnb">
 			<ul>
 				<li><a href="memberView.do">마이페이지</a></li>
-				<li><a href="exBoardList.do?">자유게시판</a></li>
+				<li><a href="exBoardList.do">자유게시판</a></li>
 				<li><a href="inbodyList.do">나의 변화</a></li>
 				<li><a href="exRecordList.do">운동기록</a></li>
 				<li><a href="exView.do">운동하기</a></li>

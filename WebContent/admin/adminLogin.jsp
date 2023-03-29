@@ -22,8 +22,8 @@
 			location.href = '${conPath}/${next}';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<form action="aLogin.do" method="post">
 			<input type="hidden" name="next" value="${param.next }">
 			<table>

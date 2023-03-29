@@ -31,9 +31,19 @@
 			alert('${withdrawalResult}');
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
- 		
+	<jsp:include page="../main/header.jsp"/>
+ 		<div id="main_title">
+ 			<h1>당신을 위한 단 하나의 운동비서</h1>
+ 			<h2></h2>
+ 			<h2>맨몸운동과 덤벨 위주의 운동을 도와드립니다</h2>
+ 			<div id="main_img">
+ 			
+ 			</div>
+ 			<div id="main_info">
+ 			
+ 			</div>
+ 		</div>
 	</div>
 	<jsp:include page="../main/footer.jsp"/>
 </body>

@@ -93,25 +93,6 @@
 				</td>
 			</tr>
  		</table>
- 		<form action="bComment.do">
- 			<input type="hidden" name="bnum" value="${exBoard.bnum }">
- 			<input type="hidden" name="pageNum" value="${param.pageNum}">
- 			<table>
- 				<tr>
- 					<td class="left"><b>${member.mid } ${admin.aid }</b></td>
- 				</tr>
- 				<tr>
- 					<td class="left">
- 						<textarea rows="5" name="bcontent"></textarea>
- 					</td>
- 				</tr>
- 				<tr>
- 					<td class="right">
- 						<input type="submit" value="등록" class="btn"> 
- 					</td>
- 				</tr>
- 			</table>
- 		</form>
  		<c:if test="${not empty comment }">
  			<c:forEach var="item" items="${comment }">
 		 		<c:if test="${BcommentModify.cnum eq item.cnum }">

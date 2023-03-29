@@ -75,8 +75,8 @@
 			history.back();
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
  		<table>
  			<tr>
  				<th>운동번호</th><th>부위</th><th>운동명</th>

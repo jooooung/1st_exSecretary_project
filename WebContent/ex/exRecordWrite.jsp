@@ -42,8 +42,8 @@
 			location.href='${conPath}/loginView.do?next=exRecordWriteView.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<form action="exRecordWrite.do">
 			<table id="exList">
 				<caption><b>운동을 하는것만큼 기록하는 것도 중요합니다</b></caption>

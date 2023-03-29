@@ -124,7 +124,7 @@ INSERT INTO MEMBER
 INSERT INTO MEMBER 
     VALUES ('member4', 'member4', '홍길동', null, '010-0266-4451', 'member4@naver.com', 'm', '2000-11-30', sysdate);
 INSERT INTO MEMBER 
-    VALUES ('member4', 'member5', '김수영', null, '010-1997-3396', 'member5@naver.com', 'f', null, sysdate);
+    VALUES ('member5', 'member5', '김수영', null, '010-1997-3396', 'member5@naver.com', 'f', null, sysdate);
     -- ADMIN
 INSERT INTO ADMIN VALUES ('admin', 'admin', '관리자');
 
@@ -182,11 +182,11 @@ INSERT INTO EXBOARD
     
     -- BCOMMENT
 INSERT INTO BCOMMENT
-    VALUES (BCOMMENT_SEQ.NEXTVAL, '1', 'member1', 'null', '대단해요!', SYSDATE, '192.3.5.2');
+    VALUES (BCOMMENT_SEQ.NEXTVAL, '1', 'member1', null, '대단해요!', SYSDATE, '192.3.5.2');
 INSERT INTO BCOMMENT
-    VALUES (BCOMMENT_SEQ.NEXTVAL, '2', 'member2', 'null', '대단해요!', SYSDATE, '192.3.5.2');
+    VALUES (BCOMMENT_SEQ.NEXTVAL, '2', 'member2', null, '대단해요!', SYSDATE, '192.3.5.2');
 INSERT INTO BCOMMENT
-    VALUES (BCOMMENT_SEQ.NEXTVAL, '3', 'member3', 'null', '대단해요!', SYSDATE, '192.3.5.2');
+    VALUES (BCOMMENT_SEQ.NEXTVAL, '3', 'member3', null, '대단해요!', SYSDATE, '192.3.5.2');
 SELECT * FROM MEMBER;
 SELECT * FROM ADMIN;
 SELECT * FROM EXPART;

@@ -42,8 +42,8 @@
 			location.href='${conPath}/loginView.do?next=exRecordModifyView.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<form action="exRecordModify.do">
 			<input type="hidden" name="eno" value="${modifyExRecord.eno }">
 			<input type="hidden" name="epno" value="${modifyExRecord.epno }">

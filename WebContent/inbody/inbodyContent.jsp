@@ -32,8 +32,8 @@
 			location.href='${conPath}/loginView.do?next=inbodyContent.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<table>
 			<tr>
 				<th>몸무게(kg)</th><th>체지방률(kg)</th><th>골격근량(kg)</th><th>날짜</th>

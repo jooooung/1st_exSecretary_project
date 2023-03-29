@@ -77,8 +77,8 @@
 			location.href='${conPath}/loginView.do?next=exView.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<form action="ex.do">
 		<input type="hidden" name="ename" value="${dto.ename }">
 			<table id="exList">

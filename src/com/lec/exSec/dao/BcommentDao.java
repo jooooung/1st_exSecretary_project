@@ -39,7 +39,7 @@ public class BcommentDao {
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
-		String sql = "SELECT * FROM BCOMMENT WHERE BNUM = ?";
+		String sql = "SELECT * FROM BCOMMENT WHERE BNUM = ? ORDER bY CDATE";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -215,5 +215,32 @@ public class BcommentDao {
 			} 
 		}
 		return result;
+	}
+	// 5. 특정 글의 댓글 개수
+	public int commentCnt(int bnum) {
+		int commentCnt = 0;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT COUNT(*) FROM BCOMMENT WHERE BNUM = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bnum);
+			rs = pstmt.executeQuery();
+			rs.next();
+			commentCnt = rs.getInt(1);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} 
+		}
+		return commentCnt;
 	}
 }

@@ -31,8 +31,8 @@
 			location.href='${conPath}/loginView.do?next=exBoardModifyView.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<form action="exBoardModify.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="pageNum" value="${param.pageNum }">
 			<input type="hidden" name="bnum" value="${exboard.bnum }">

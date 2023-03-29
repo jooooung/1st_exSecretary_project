@@ -11,19 +11,6 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
-	<style>
-		table{
-			height: auto;
-			border-radius: 10px;
-		}
-		table tr:hover:not(.title){
-			background-color: #cfcfda;
-			cursor: pointer;
-		}
-		table .title th{
-			border-bottom: 2px solid;
-		}
-	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
@@ -54,14 +41,14 @@
 			history.back();
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<div class="page-title">
 			<h1>자유게시판</h1>
 		</div>
-		<table>
+		<table class="board-list">
 			<tr class="title">
-				<th>no</th><th>제목</th><th>글쓴이</th><th>작성일</th><th>조회수</th>
+				<th>no</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
 			</tr>
 			<c:if test="${exBoardList.size() eq 0 }">
 				<tr><td colspan="5">해당 페이지에 글이 없습니다</td></tr>
@@ -91,7 +78,7 @@
 								</c:if><!-- 첨부파일 아이콘 -->
 							</c:if><!-- 조회수 높은 글 효과주기 -->
 							<c:if test="${dto.bhit <= 10 }">
-								${dto.btitle }
+									${dto.btitle } 
 								<c:if test="${not empty dto.bphoto }">
 									<img alt="첨부파일 아이콘" src="${conPath }/img/file.png" width="13">
 								</c:if><!-- 첨부파일 아이콘 -->
@@ -99,7 +86,7 @@
 						</td>
 						<td>${dto.writer}</td>
 						<td>
-							<fmt:formatDate value="${dto.bdate}" pattern="YY.MM.dd HH:mm" type="both"/>
+							<fmt:formatDate value="${dto.bdate}" pattern="YY.MM.dd" type="both"/>
 						</td>
 						<td>${dto.bhit }</td>
 					</tr>

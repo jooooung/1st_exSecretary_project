@@ -21,16 +21,15 @@
 		  transform : translateY(-100%);
 		}
 		#footer_conts ul{
+			padding-left: 100px;
 			overflow: hidden;
-			text-align: center;
+			text-align: left;
 			
 		}
 		#footer_conts ul li{
 			list-style: none;
 			float: left;
 		}
-		
-		
 	</style>
 </head>
 <body>
@@ -38,14 +37,14 @@
 	<div id="footer_conts">
 		<ul>
 			<li>
-				<img alt="로고" src="${conPath }/img/EXSecretary.png" width="115px">
+				<img alt="로고" src="${conPath }/img/EXSecretary.png" width="100px">
 			</li>
-			<li>			
-			<p>(주)운동비서</p>
+			<li>
+			<br>
 			<p>
-				경기도 고양시 어떤로 9 좋은빌딩 1-5F | <b>
+				All rights reserved.
 			</p>
-			<p>Copyright© 2023 tj . All rights reserved.</p>
+			<p>Copyright©2023 운동비서  </p>
 			<li>
 		</ul>
 	</div>

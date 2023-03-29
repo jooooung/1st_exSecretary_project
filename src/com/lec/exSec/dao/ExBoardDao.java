@@ -188,7 +188,7 @@ public class ExBoardDao {
 					int    bstep= rs.getInt("bstep");
 					int    bindent= rs.getInt("bindent");
 					String bip = rs.getString("bip");
-					String writer      = rs.getString("writer");
+					String writer = rs.getString("writer");
 					dto = new ExBoardDto(bnum, mid, aid, btitle, bcontent, bphoto, bdate, 
 									bhit, bgroup, bstep, bindent, bip, writer);
 				}
@@ -394,7 +394,7 @@ public class ExBoardDao {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, null);
-				pstmt.setString(2, "삭제된 글입니다");
+				pstmt.setString(2, "(삭제된 글입니다)");
 				pstmt.setString(3, null);
 				pstmt.setString(4, null);
 				pstmt.setInt(5, 0);

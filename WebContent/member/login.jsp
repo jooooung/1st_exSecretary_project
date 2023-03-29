@@ -44,8 +44,8 @@
 			</script>
 		</c:when>
 	</c:choose>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<form action="login.do" method="post">
 			<input type="hidden" name="next" value="${param.next }">
 			<table>

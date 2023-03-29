@@ -45,8 +45,8 @@
 			history.back();
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<table>
 			<caption><b>${exContent.edate}(${exContent.ename })</b></caption>
 			<tr></tr>

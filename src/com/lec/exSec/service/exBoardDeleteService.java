@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lec.exSec.dao.ExBoardDao;
 
-public class exBoardDeleteService implements Service {
+public class ExBoardDeleteService implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int bnum = Integer.parseInt(request.getParameter("bnum"));

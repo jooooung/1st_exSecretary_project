@@ -12,14 +12,26 @@
 	<style>
 		#content table:first-child{
 			border-radius: 10px 10px 0 0;
+			padding: 15px;
 		} 
 		#content table:last-child{
 			border-radius: 0 0 10px 10px;
 		} 
 		#content form{
-			border-bottom: 1px solid;
-			border-top: 1px solid;
+			border-bottom: 1px solid #e7e7e7;
+			border-top: 1px solid #e7e7e7;
 			border-radius: 0;
+		}
+		#content input.commentBtn{
+			width: 70px;
+			height: 30px;
+			line-height: 30px;
+			padding: 0;
+			cursor: pointer;
+			border-radius: 25px;
+		}
+		#content input.commentBtn:hover{
+			background-color: #e7e7e7;
 		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -40,15 +52,17 @@
 		alert('${exBoardResult}');
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
  		<table>
  			<tr>
  				<th><h1>${exBoard.btitle }</h1></th>
  			</tr>
  			<tr></tr>
  			<tr>
- 				<td class="right"><b>${exBoard.writer }&nbsp; &nbsp;</b></td>
+ 				<td class="right">
+ 					<b>${exBoard.writer }&nbsp; &nbsp;</b>
+ 				</td>
  			</tr>
  			<tr></tr>
  			<tr>
@@ -102,19 +116,19 @@
  				</tr>
  				<tr>
  					<td class="left">
- 						<textarea rows="5" name="bcontent"></textarea>
+ 						<textarea rows="5" name="ccontent" required="required"></textarea>
  					</td>
  				</tr>
  				<tr>
- 					<td class="right">
- 						<input type="submit" value="등록" class="btn">
+ 					<td class="right small">
+ 						<input type="submit" value="댓글쓰기" class="commentBtn">
  					</td>
  				</tr>
  			</table>
  		</form>
  		<c:if test="${not empty comment }">
  			<c:forEach var="item" items="${comment }">
-		 		<table>
+		 		<table class="comment">
 		 			<tr>
 		 				<td class="left">
 		 					<b>${item.mid }</b>

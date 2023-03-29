@@ -23,8 +23,8 @@
 			location.href="aLoginView.do";
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
  		<form action="exPartModify.do" style="width: 1200px;">
  			<table>
  				<caption>${modifyExPart.ename } 수정하기</caption>

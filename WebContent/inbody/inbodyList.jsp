@@ -11,7 +11,6 @@
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
 	<style>
 		table{
-			background-color: white;
 			height: auto;
 			border-radius: 10px;
 		}
@@ -78,8 +77,8 @@
 			history.back();
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 	<script src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="${conPath }/inbody/chart.js"></script>
   <div id="chart_div"></div>

@@ -31,8 +31,8 @@
 			location.href='${conPath}/loginView.do?next=exBoardWriteView.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<form action="exBoardWrite.do" method="post" enctype="multipart/form-data">
 	 		<table>
 			<caption>글쓰기</caption>

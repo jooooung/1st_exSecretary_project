@@ -27,7 +27,7 @@ public class BCommentService implements Service {
 				aid = admin.getAid();
 			}
 			int bnum = Integer.parseInt(request.getParameter("bnum"));
-			String ccontent = request.getParameter("bcontent");
+			String ccontent = request.getParameter("ccontent");
 			Timestamp cdate = new Timestamp(System.currentTimeMillis());
 			String cip = request.getRemoteAddr();
 			BcommentDao bcDao = BcommentDao.getInstance();

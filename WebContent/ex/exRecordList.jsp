@@ -11,17 +11,8 @@
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
 	<style>
 		table{
-			background-color: white;
-			width: 700px;
 			height: auto;
-			margin:0 auto;
 			border-radius: 10px;
-		}
-		table tr:first-child {
-			border-bottom: 1px dashed;	
-		}
-		.paging, .paging a{
-			color: white;
 		}
 		table .ex td:first-child{
 			display: none;
@@ -76,8 +67,8 @@
 			alert('${exRecordDeleteResult}');
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
+	<jsp:include page="../main/header.jsp"/>
 		<table>
 			<tr>
 				<th>운동</th><th>무게</th><th>세트수</th><th>개수</th><th>시간</th><th>날짜</th>

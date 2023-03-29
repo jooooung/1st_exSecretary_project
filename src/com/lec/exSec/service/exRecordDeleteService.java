@@ -23,7 +23,8 @@ public class ExRecordDeleteService implements Service {
 		}
 		ExDao eDao = ExDao.getInstance();
 		int result = eDao.deleteExRecord(eno, mid);
-		String exRecordDeleteResult = result == ExDao.SUCCESS? "운동기록 삭제 성공" : "운동기록 삭제 실패";
-		request.setAttribute("exRecordDeleteResult", exRecordDeleteResult);
+		if(result == ExDao.SUCCESS) {
+			request.setAttribute("exRecordDeleteResult", "삭제 성공");
+		}
 	}
 }
