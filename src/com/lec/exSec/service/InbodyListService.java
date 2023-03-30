@@ -18,5 +18,6 @@ public class InbodyListService implements Service {
 			mid = member.getMid();
 		}
 		request.setAttribute("inbody", iDao.listInbody(mid));
+		request.setAttribute("dataList", iDao.listInbodyChart(mid));
 	}
 }

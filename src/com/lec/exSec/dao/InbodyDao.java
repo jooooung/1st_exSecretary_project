@@ -251,4 +251,36 @@ public class InbodyDao {
 		}
 		return result;
 	}
+	// 차트에 뿌리는 용도
+	public ArrayList<InbodyDto> listInbodyChart(String mid){
+		ArrayList<InbodyDto> dtos = new ArrayList<InbodyDto>();
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT IDATE, IWEIGHT, IFAT, IMUSCLE FROM INBODY WHERE MID = ? ORDER BY IDATE";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				double iweight = rs.getDouble("iweight");
+				double ifat = rs.getDouble("ifat");
+				double imuscle = rs.getDouble("imuscle");
+				Date idate = rs.getDate("idate");
+				dtos.add(new InbodyDto(mid, iweight, ifat, imuscle, idate));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage() + " 나의 변화 차트 목록 실패");
+		} finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn  != null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} 
+		}
+		return dtos;
+	}
 }

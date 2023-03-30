@@ -56,6 +56,7 @@
 						+'<td><input type="number" name="ecount"  class="ex" required="required" min="1"></td>'
 						+'<td><input type="button" value="X" class="delete"></td>'
 						+'</tr>');
+				var exListCnt = $('table#exList tr').length;
 			});
 			$(document).on('click', '.delete', function(){
 				$(this).parents('tr').remove(); 

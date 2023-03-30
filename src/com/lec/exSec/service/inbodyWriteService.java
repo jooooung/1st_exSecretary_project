@@ -23,14 +23,14 @@ public class inbodyWriteService implements Service {
 		double iweight = Double.valueOf(request.getParameter("iweight"));
 		double ifat = Double.valueOf(request.getParameter("ifat"));
 		double imuscle = Double.valueOf(request.getParameter("imuscle"));
-		Date idate = new Date(System.currentTimeMillis());
+		Date idate = Date.valueOf(request.getParameter("idate"));
 		InbodyDao iDao = InbodyDao.getInstance();
 		InbodyDto dto = new InbodyDto(inum, mid, iweight, ifat, imuscle, idate);
 		int result = iDao.writeInobdy(dto);
 		if(result == InbodyDao.SUCCESS) {
-			request.setAttribute("inbodyWriteResult", "나의 변화 등록 성공");
+			request.setAttribute("inbodyResult", "나의 변화 등록 성공");
 		}else {
-			request.setAttribute("inbodyWriteError", "나의 변화 등록 실패");
+			request.setAttribute("inbodyError", "나의 변화 등록 실패");
 		}
 	}
 }

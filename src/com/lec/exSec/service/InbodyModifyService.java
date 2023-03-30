@@ -28,9 +28,9 @@ public class InbodyModifyService implements Service {
 		InbodyDto dto = new InbodyDto(inum, mid, iweight, ifat, imuscle, idate);
 		int result = iDao.modifyInbody(dto);
 		if(result == InbodyDao.SUCCESS) {
-			request.setAttribute("inbodyModifyResult", "수정 성공");
+			request.setAttribute("inbodyResult", "수정 성공");
 		}else {
-			request.setAttribute("inbodyModifyError", "수정 실패");
+			request.setAttribute("inbodyError", "수정 실패");
 		}
 	}
 }

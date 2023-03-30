@@ -181,9 +181,13 @@ public class FrontController extends HttpServlet {
 			service = new InbodyModifyViewService();
 			service.execute(request, response);
 			viewPage = "inbody/inbodyModify.jsp";
+			result = 1;
 		}else if(command.equals("/inbodyModify.do")){	// 나의변화 수정 저장
-			service = new InbodyModifyService();
-			service.execute(request, response);
+			if(result == 1) {
+				service = new InbodyModifyService();
+				service.execute(request, response);
+				result = 0;
+			}
 			viewPage = "inbodyList.do";
 		}else if(command.equals("/inbodyDelete.do")){	// 나의변화 삭제
 			service = new InbodyDeleteService();

@@ -9,9 +9,6 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
-	<style>
-		#content form{height: 1000px;}
-	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
 		$(function(){
@@ -76,7 +73,7 @@
 					</td>
 					<c:if test="${not empty member.mphoto }">
 						<td rowspan="2">
-	  					<img alt="${member.mname }사진" src="${conPath }/memberPhotoUp/${member.mphoto}" width="130px">
+	  					<img alt="${member.mname }사진" src="${conPath }/memberPhotoUp/${member.mphoto}" width="250px">
 	  				</td>
 					</c:if>
 				</tr>

@@ -10,7 +10,7 @@
 	<title>Insert title here</title>
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
 	<style>
-		table{
+		table{	
 			height: auto;
 			border-radius: 10px;
 		}
@@ -26,17 +26,54 @@
 			cursor: pointer;
 		}
 	</style>
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script>
+		var inbodylist =  JSON.parse('${dataList}');
+		
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+		
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', '날짜');
+      data.addColumn('number', '몸무게');
+      data.addColumn('number', '체지방량');
+      data.addColumn('number', '골격근량');
+      
+      inbodylist.forEach(function(inbody, i) {
+				data.addRows([
+					[inbody.idate, inbody.iweight, inbody.ifat, inbody.imuscle]
+				]);
+			});
+      
+      var options = {
+				title: 'Inbody 기록',
+				width: '75%',
+				height: 300,
+        hAxis: {
+          title: 'date',
+        },
+        vAxis: {
+          title: 'kg'
+        }
+      };
+      
+		  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+	    chart.draw(data, options);
+		}
+		
 		$(function(){
 			$('tr.inbody').click(function(){
 				var inum = $(this).children().eq(0).text();
 				if(! isNaN(inum)){
-					location.href = '${conPath }/inbodyContent.do?inum='+inum;
+					location.href = '${conPath }/inbodyContent.do?inum='+inum; // table tr click event
 				}
 			});
 		});
 	</script>
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
+	<%-- <script type="text/javascript" src="${conPath }/inbody/chart.js"></script> --%>
 </head>
 <body>
 	<c:if test="${empty member}">
@@ -44,43 +81,19 @@
 			location.href='${conPath}/loginView.do?next=inbodyList.do';
 		</script>
 	</c:if>
-	<c:if test="${not empty inbodyWriteResult }">
+	<c:if test="${not empty inbodyResult }">
 		<script>
-			alert('${inbodyWriteResult}');
+			alert('${inbodyResult}');
 		</script>
 	</c:if>
-	<c:if test="${not empty inbodyWriteError }">
+	<c:if test="${not empty inbodyError }">
 		<script>
-			alert('${inbodyWriteError}');
-			history.back();
-		</script>
-	</c:if>
-	<c:if test="${not empty inbodyModifyResult }">
-		<script>
-			alert('${inbodyModifyResult }');
-		</script>
-	</c:if>
-	<c:if test="${not empty inbodyModifyError }">
-		<script>
-			alert('${inbodyModifyError}');
-			history.back();
-		</script>
-	</c:if>
-	<c:if test="${not empty inbodyDeleteResult }">
-		<script>
-			alert('${inbodyDeleteResult }');
-		</script>
-	</c:if>
-	<c:if test="${not empty inbodyDeleteError}">
-		<script>
-			alert('${inbodyDeleteError}');
+			alert('${inbodyError}');
 			history.back();
 		</script>
 	</c:if>
 	<div id="content">
 	<jsp:include page="../main/header.jsp"/>
-	<script src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript" src="${conPath }/inbody/chart.js"></script>
   <div id="chart_div"></div>
 		<table>
 			<tr>

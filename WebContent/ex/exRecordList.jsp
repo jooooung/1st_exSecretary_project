@@ -70,6 +70,7 @@
 	<div id="content">
 	<jsp:include page="../main/header.jsp"/>
 		<table>
+			<caption>운동기록</caption>
 			<tr>
 				<th>운동</th><th>무게</th><th>세트수</th><th>개수</th><th>시간</th><th>날짜</th>
 			</tr>

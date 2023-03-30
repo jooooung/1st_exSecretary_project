@@ -1,135 +1,138 @@
 @charset "UTF-8";
-	html,body {
-        height: 663px;
-        padding: 0px;
-        margin: 0 auto;
-    }
-    a{
-    	color: black;
-    	text-decoration: none;
-    }
-    a:hover{
-    	text-decoration: underline;
-    	font-weight: bold;
-    	cursor: pointer;
-    }
-		#content{
-			width: 100%;
-			height: auto;
-			min-height: 100%;
-			padding: 30px 0 80px;
-			background-image: url("../img/back2.png");
-			background-size:  100% 100%;
-			background-repeat: no-repeat;
-			text-align: center;
-		}
-		#content .left {
-			text-align: left;
-		}
-		#content .right {
-			text-align: right;
-		}
-		#content .small {
-			opacity: 0.7;
-			font-size: 0.8em;
-		}
-		#content .page-title{
-			margin:20px auto;
-			color: white;
-		}
-		#content form{
-			background-color: white;
-			width: 90%;
-			height: auto;
-			margin:0 auto;
-			border-radius: 10px;
-		}
-		#content table {
-			border-collapse: collapse;
-			background-color: white;	
-			width: 90%;
-			margin: 0 auto;
-		}
-		#content table.board-list{
-			 font-size: 15px;
- 			 width: 100%;
-		}
-		#content table.board-list tr:hover:not(.title){
-			background-color: #d3d3d3;
-			cursor: pointer;
-		}
-		#content table.board-list tr:first-child th{
-			border-bottom: 1px solid;
-		}
-		#content table.board-list tr th, 
-		#content table.board-list tr td{
-			border-bottom: 1px solid #e7e7e7;
-		}
-		#content table caption{
-			font-size: 2em;
-			color: white;
-			margin: 50px 0;
-		}
-		#content form caption{
-			color: black;
-		}
-		#content table tr{
-			height: 40px;
-		}
-		#content th, #content td{
-			text-align: center;
-			padding: 5px;
-			
-		}
-		#content input:not(.btn) {
-			padding-left:10px;
-			height: 50px;
-			line-height: 50px;
-			font-size:1.1em;
-			outline: none;
-			border: 0;
-			border-bottom: 2px solid #cfcfda;
-			width: 90%;
-		}
-		#content input.mgender{
-			width: 100px;
-			height: 20px;
-		}
-		#content textarea{
-			width: 90%;
-			padding: 10px;
-			font-size: 15px;
-			font-weight: bold;
-		}
-		#main_title{
-			color: white;
-		}
-		.btn{
-			background-color: #cfcfda;
-			color: white;
-			text-align: center;
-			font-weight: bold;
-			cursor: pointer;
-			width: 150px;
-			height: 50px;
-			line-height: 50px;
-			font-size:1.1em;
-			border: 0;
-			border-radius: 30px;
-		}
-		.btn:hover{
-			background-color: grey;
-		}
-		.paging, .paging a{
-			color: white;
-			margin: 20px 0;
-		}
-		table.comment{
-			padding-left: 20px;
-			padding-right: 20px;
-		 	border-bottom: 1px solid #e7e7e7;
-		}
-		#main_title{
-			list-style: none;
-			padding: 30px;
-		}
+html,body {
+     padding: 0px;
+     margin: 0 auto;
+     height: 100%;
+     background-image: url("../img/back2.png");
+		 background-size:  100% 200%;
+		 background-repeat: no-repeat;
+   }
+   a{
+   	color: black;
+   	text-decoration: none;
+   }
+   a:hover{
+   	text-decoration: underline;
+   	font-weight: bold;
+   	cursor: pointer;
+   }
+	#content{
+		width: 100%;
+		height: 400px;
+		min-height: 100%;
+		padding: 30px 0 80px;
+		text-align: center;
+	}
+	#content .left {
+		text-align: left;
+	}
+	#content .right {
+		text-align: right;
+	}
+	#content .small {
+		opacity: 0.7;
+		font-size: 0.8em;
+	}
+	#content .page-title{
+		margin:20px auto;
+		color: white;
+	}
+	#content form{
+		background-color: white;
+		width: 90%;
+		height: auto;
+		max-height: 120%;
+		margin:0 auto;
+		border-radius: 10px;
+	}
+	#content table {
+		border-collapse: collapse;
+		background-color: white;	
+		width: 90%;
+		margin: 0 auto;
+	}
+	#content table.board-list{
+		 font-size: 15px;
+			 width: 100%;
+	}
+	#content table.board-list tr:hover:not(.title){
+		background-color: #d3d3d3;
+		cursor: pointer;
+	}
+	#content table.board-list tr:first-child th{
+		border-bottom: 1px solid;
+	}
+	#content table.board-list tr th, 
+	#content table.board-list tr td{
+		border-bottom: 1px solid #e7e7e7;
+	}
+	#content table caption{
+		font-size: 2em;
+		color: white;
+		margin: 50px 0;
+	}
+	#content form caption{
+		color: black;
+	}
+	#content table tr{
+		height: 40px;
+	}
+	#content th, #content td{
+		text-align: center;
+		padding: 5px;
+		
+	}
+	#content input:not(.btn) {
+		padding-left:10px;
+		height: 50px;
+		line-height: 50px;
+		font-size:1.1em;
+		outline: none;
+		border: 0;
+		border-bottom: 2px solid #cfcfda;
+		width: 90%;
+	}
+	#content input.mgender{
+		width: 100px;
+		height: 20px;
+	}
+	#content textarea{
+		width: 90%;
+		padding: 10px;
+		font-size: 15px;
+		font-weight: bold;
+	}
+	#main_title{
+		color: white;
+	}
+	.btn{
+		background-color: #cfcfda;
+		color: white;
+		text-align: center;
+		font-weight: bold;
+		cursor: pointer;
+		width: 150px;
+		height: 50px;
+		line-height: 50px;
+		font-size:1.1em;
+		border: 0;
+		border-radius: 30px;
+	}
+	.btn:hover{
+		background-color: grey;
+	}
+	.paging, .paging a{
+		color: white;
+		margin: 20px 0;
+	}
+	#content table.comment{
+	 	border-bottom: 1px solid #e7e7e7;
+	}
+	#content table.comment td{
+		padding-left: 50px;
+		padding-right: 50px;
+	}
+	#main_title{
+		list-style: none;
+		padding: 30px;
+}

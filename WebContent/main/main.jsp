@@ -35,7 +35,7 @@
 	<jsp:include page="../main/header.jsp"/>
  		<div id="main_title">
  			<h1>당신을 위한 단 하나의 운동비서</h1>
- 			<h2></h2>
+ 			<br>
  			<h2>맨몸운동과 덤벨 위주의 운동을 도와드립니다</h2>
  			<div id="main_img">
  			

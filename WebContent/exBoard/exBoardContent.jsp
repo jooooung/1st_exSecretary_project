@@ -10,13 +10,6 @@
 	<title>Insert title here</title>
 	<link href="${conPath}/css/main.css" rel="stylesheet" type="text/css">
 	<style>
-		#content table:first-child{
-			border-radius: 10px 10px 0 0;
-			padding: 15px;
-		} 
-		#content table:last-child{
-			border-radius: 0 0 10px 10px;
-		} 
 		#content form{
 			border-bottom: 1px solid #e7e7e7;
 			border-top: 1px solid #e7e7e7;
@@ -132,14 +125,14 @@
 		 			<tr>
 		 				<td class="left">
 		 					<b>${item.mid }</b>
+		 					<p class="small">
+								<fmt:formatDate value="${item.cdate}" pattern="YY.MM.dd HH:mm" type="both"/>
+							</p>
 		 				</td>
 		 			</tr>
 		 			<tr>
 						<td class="left">
-								${item.ccontent }<br>
-							<span class="small">
-								<fmt:formatDate value="${item.cdate}" pattern="YY.MM.dd HH:mm" type="both"/>
-							</span>
+								${item.ccontent }
 							<div class="right small">
 			 					<c:if test="${member.mid eq item.mid || admin.aid eq item.mid}">
 			 						<a href="${conPath }/bCommentModifyView.do?bnum=${exBoard.bnum}&cnum=${item.cnum}">

@@ -12,6 +12,16 @@ public class InbodyDto {
 	public InbodyDto() {
 		super();
 	}
+	
+	public InbodyDto(String mid, double iweight, double ifat, double imuscle, Date idate) {
+		super();
+		this.mid = mid;
+		this.iweight = iweight;
+		this.ifat = ifat;
+		this.imuscle = imuscle;
+		this.idate = idate;
+	}
+
 	public InbodyDto(int inum, String mid, double iweight, double ifat, double imuscle, Date idate) {
 		super();
 		this.inum = inum;
@@ -59,7 +69,7 @@ public class InbodyDto {
 	}
 	@Override
 	public String toString() {
-		return "InbodyDto [inum=" + inum + ", mid=" + mid + ", iweight=" + iweight + ", ifat=" + ifat + ", imuscle="
-				+ imuscle + ", idate=" + idate + "]";
+		return "{\"idate\": \"" + idate + "\", \"iweight\": " + iweight + ",  "
+			 + "\"ifat\": " + ifat + ", \"imuscle\" : " + imuscle + "}";
 	}
 }

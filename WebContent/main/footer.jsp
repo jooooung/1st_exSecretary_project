@@ -15,13 +15,14 @@
 		footer {
 			color: white;
 			width: 500px;
-			margin:0 auto;
+			margin:20px auto;
+			padding-left: 175px;
 			height: 80px;
 			position : relative;
 		  transform : translateY(-100%);
 		}
 		#footer_conts ul{
-			padding-left: 100px;
+			margin: 0 auto;
 			overflow: hidden;
 			text-align: left;
 			

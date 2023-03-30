@@ -28,7 +28,7 @@
 			<table>
 				<caption>inbody 등록</caption>
 				<tr>
-					<th>몸무게</th><th>체지방률</th><th>골격근량</th>
+					<th>몸무게</th><th>체지방률</th><th>골격근량</th><th>날짜</th>
 				</tr>
 				<tr>
 					<td>
@@ -40,11 +40,14 @@
 					<td>
 						<input type="number" name="imuscle" value="0">
 					</td>
+					<td>
+						<input type="date" name="idate" required="required">
+					</td>
 				</tr>
 				<tr>
 				</tr>
 				<tr>
-					<td colspan="3">
+					<td colspan="4">
 						<input type="submit" value="등록" class="btn">
 						<input type="reset" value="초기화" class="btn">
 						<input type="button" value="목록" onclick="location.href='${conPath}/inbodyList.do'" class="btn">

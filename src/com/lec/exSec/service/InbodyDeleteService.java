@@ -20,9 +20,9 @@ public class InbodyDeleteService implements Service {
 		InbodyDao iDao = InbodyDao.getInstance();
 		int result = iDao.deleteInbody(inum, mid);
 		if(result == InbodyDao.SUCCESS) {
-			request.setAttribute("inbodyDeleteResult", "기록 삭제 성공");
+			request.setAttribute("inbodyResult", "기록 삭제 성공");
 		}else {
-			request.setAttribute("inbodyDeleteError", "기록 삭제 실패");
+			request.setAttribute("inbodyError", "기록 삭제 실패");
 		}
 	}	
 }
