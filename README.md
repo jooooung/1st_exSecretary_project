@@ -63,4 +63,5 @@
 
 ## 9. 실행화면
 ![9  실행화면](https://user-images.githubusercontent.com/118671542/229034222-171384e6-e623-4f53-a880-246643796577.jpg)
-![9  실행화면2](https://user-images.githubusercontent.com/118671542/229034238-fe4f90db-4bda-4bbc-b23d-4540020e9985.jpg)
+![9  실행화면2](https://user-images.githubusercontent.com/118671542/229042611-8a6cd42e-507e-4cb8-90d6-14a0a03f2299.jpg)
+
