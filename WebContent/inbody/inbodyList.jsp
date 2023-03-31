@@ -73,7 +73,6 @@
 		});
 	</script>
 	<script src="https://www.gstatic.com/charts/loader.js"></script>
-	<%-- <script type="text/javascript" src="${conPath }/inbody/chart.js"></script> --%>
 </head>
 <body>
 	<c:if test="${empty member}">
