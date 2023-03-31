@@ -11,6 +11,7 @@
 - 프로젝트 소개 : 덤벨 또는 맨몸 운동 기록, 내 몸의 변화(몸무게, 체지방량, 골격근량)를 기록하고 소통할 수 있는 시스템이다
 ---
 ## 목차
+
 [1. 작업분할 구조도](#1-작업분할-구조도)  
 
 [2. Gantt chart](#2-gantt-chart)  
@@ -30,6 +31,8 @@
 [9. 실행화면](#9-실행화면)
 
 ----
+![exSecretary](https://user-images.githubusercontent.com/118671542/229038039-eb4677db-4ca9-4426-88d6-99d73c8a636a.gif)
+
 ## 1. 작업분할 구조도
 ![1  작업분할구조도1](https://user-images.githubusercontent.com/118671542/229034067-686cf5b3-36e6-4292-9c1d-7838678c78fb.jpg)
 ![1  작업분할구조도2](https://user-images.githubusercontent.com/118671542/229034090-53cf39f1-35d2-4f2d-84fc-3fe1d5d090c6.jpg)
